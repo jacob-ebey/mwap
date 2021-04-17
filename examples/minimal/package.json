@@ -1,0 +1,25 @@
+{
+  "name": "@mwap/example-minimal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./node_modules/@mwap/cli/bin/cli.js build",
+    "dev": "node ./node_modules/@mwap/cli/bin/cli.js dev",
+    "start": "node ./node_modules/@mwap/cli/bin/cli.js start"
+  },
+  "dependencies": {
+    "@mwap/app": "1.0.0",
+    "@mwap/cli": "1.0.0",
+    "@mwap/client": "1.0.0",
+    "@mwap/loaders": "1.0.0",
+    "@mwap/router": "1.0.0",
+    "@mwap/server": "1.0.0",
+    "express": "4.17.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.3"
+  }
+}

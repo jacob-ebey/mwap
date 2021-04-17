@@ -1,0 +1,27 @@
+export { LoaderProvider } from "./context";
+export type { GetLoaderData } from "./context";
+
+export type LoaderConfig = {
+  headers?: Record<string, string>;
+};
+
+export type LoaderConfigContext<TData> = {
+  data: TData;
+};
+
+export type LoaderConfigFunc<
+  TData = any,
+  TConfig extends LoaderConfig = LoaderConfig
+> = (context: LoaderConfigContext<TData>) => TConfig;
+
+export type LoaderContext = {
+  search: string;
+};
+
+export type Loader<TData = any> = (
+  context: LoaderContext
+) => TData | Promise<TData>;
+
+export { useLoader } from "./hooks";
+
+export { getLoaderCacheId } from "./utils";

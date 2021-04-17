@@ -1,0 +1,34 @@
+{
+  "name": "@mwap/client",
+  "version": "1.0.0",
+  "license": "MIT",
+  "source": "src/client.ts",
+  "types": "dist/client.d.ts",
+  "main": "dist/client.js",
+  "module": "dist/client.module.js",
+  "exports": "./dist/client.modern.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle --jsx React.createElement",
+    "dev": "microbundle watch --jsx React.createElement"
+  },
+  "dependencies": {
+    "@mwap/app": "1.0.0",
+    "@mwap/loaders": "1.0.0",
+    "@mwap/router": "1.0.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "@types/node": "14.14.41",
+    "@types/react": "17.0.3",
+    "@types/react-dom": "17.0.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "microbundle": "0.13.0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@mwap/router",
+  "version": "1.0.0",
+  "license": "MIT",
+  "source": "src/router.ts",
+  "types": "dist/router.d.ts",
+  "main": "dist/router.js",
+  "module": "dist/router.module.js",
+  "exports": "./dist/router.modern.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle --jsx React.createElement",
+    "dev": "microbundle watch --jsx React.createElement"
+  },
+  "dependencies": {
+    "react-router-dom": "5.2.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.3",
+    "@types/react-router-dom": "5.1.7",
+    "react": "17.0.2",
+    "microbundle": "0.13.0"
+  }
+}
