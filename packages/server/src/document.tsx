@@ -10,6 +10,7 @@ export type ClientBuildStats = {
 
 type DocumentContext = {
   appHtml: string;
+  chunks: Set<string | number>;
   loaderCache: Map<string, LoaderCacheValue<unknown>>;
   stats: ClientBuildStats;
 };
@@ -30,11 +31,17 @@ export const DocumentProvider: FC<DocumentContext> = ({
 };
 
 export const Body = ({ publicPath = "/.mwap/" }) => {
-  const { appHtml, loaderCache, stats } = useContext(documentContext);
+  const { appHtml, chunks, loaderCache, stats } = useContext(documentContext);
 
   return (
     <Fragment>
       <div id="__mwap__" dangerouslySetInnerHTML={{ __html: appHtml }} />
+      <script
+        type="__ASYNC_CHUNKS__"
+        dangerouslySetInnerHTML={{
+          __html: encodeURI(JSON.stringify(Array.from(chunks))),
+        }}
+      />
       <script
         type="__SSR_DATA__"
         dangerouslySetInnerHTML={{
@@ -48,6 +55,17 @@ export const Body = ({ publicPath = "/.mwap/" }) => {
           ),
         }}
       />
+      {Array.from(chunks).map((chunk) =>
+        stats.assetsByChunkName[chunk] ? (
+          <Fragment key={chunk}>
+            {stats.assetsByChunkName[chunk].map((asset) =>
+              asset.endsWith(".js") ? (
+                <script key={asset} defer src={`${publicPath}${asset}`} />
+              ) : null
+            )}
+          </Fragment>
+        ) : null
+      )}
       {stats.assetsByChunkName["main"].map((asset) =>
         asset.endsWith(".js") ? (
           <script key={asset} src={`${publicPath}${asset}`} />

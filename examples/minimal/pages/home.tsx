@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import * as React from "react";
 import { useState } from "react";
+
 import { useLoader } from "@mwap/loaders";
-import { Link } from "@mwap/router";
 
 import type { HomePageData } from "../loaders/home";
 

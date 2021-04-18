@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { renderToStringAsync } from "react-async-ssr";
 
 import { AppShell } from "@mwap/app";
+import { AsyncProvider } from "@mwap/async";
 import { LoaderProvider } from "@mwap/loaders";
 import { StaticRouter } from "@mwap/router";
 
@@ -25,13 +26,16 @@ export type RenderOptions = {
 
 export const render = async ({ location, search, stats }: RenderOptions) => {
   const loaderContext = createLoaderContext();
+  const chunks = new Set<string>();
 
   const appHtml: string = await renderToStringAsync(
     <Suspense fallback={""}>
       <StaticRouter location={location}>
-        <LoaderProvider getData={loaderContext.getData} search={search}>
-          <AppShell />
-        </LoaderProvider>
+        <AsyncProvider chunks={chunks}>
+          <LoaderProvider getData={loaderContext.getData} search={search}>
+            <AppShell />
+          </LoaderProvider>
+        </AsyncProvider>
       </StaticRouter>
     </Suspense>,
     {}
@@ -40,6 +44,7 @@ export const render = async ({ location, search, stats }: RenderOptions) => {
   const html = renderToStaticMarkup(
     <DocumentProvider
       appHtml={appHtml}
+      chunks={chunks}
       loaderCache={loaderContext.loaderCache}
       stats={stats}
     >

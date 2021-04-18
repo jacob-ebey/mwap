@@ -1,5 +1,7 @@
 const path = require("path");
 
+const WebpackBar = require("webpackbar");
+
 const getBaseConfig = require("./get-base-config");
 const resolveEntry = require("../utils/resolve-entry");
 
@@ -31,6 +33,14 @@ async function getServerConfig(args) {
   };
 
   config.entry = [path.resolve(__dirname, "../../runtime/express")];
+
+  config.plugins.push(
+    new WebpackBar({
+      color: "green",
+      name: "server",
+      reporters: ["fancy"],
+    })
+  );
 
   return config;
 }

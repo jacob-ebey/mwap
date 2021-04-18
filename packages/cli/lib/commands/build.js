@@ -20,14 +20,13 @@ function printErrors(compilation) {
  * @param {import("../../types/args").BuildArgs} args
  */
 async function build({ _, ...args }) {
-  console.info("Building with args", args);
-
   const [clientConfig, serverConfig] = await Promise.all([
     getClientConfig(args),
     getServerConfig(args),
   ]);
 
   await new Promise((resolve, reject) => {
+    // TODO: Run them in parallel
     webpack([clientConfig, serverConfig], (err, stats) => {
       if (err) {
         reject(err);
@@ -43,25 +42,43 @@ async function build({ _, ...args }) {
     });
   })
     .then((stats) => {
-      console.info("\n\nClient Build ============");
-      printWarnings(stats.stats[0].compilation);
-      printErrors(stats.stats[0].compilation);
+      if (args.verbose) {
+        console.info("\n\nClient Build ============");
+        printWarnings(stats.stats[0].compilation);
+        printErrors(stats.stats[0].compilation);
 
-      console.info("\n\nServer Build ============");
-      printWarnings(stats.stats[1].compilation);
-      printErrors(stats.stats[1].compilation);
+        console.info("\n\nServer Build ============");
+        printWarnings(stats.stats[1].compilation);
+        printErrors(stats.stats[1].compilation);
 
-      console.info(stats.toString({ errorDetails: "verbose" }));
+        console.info(stats.toString({ errorDetails: "verbose" }));
+      }
     })
     .catch((stats) => {
-      console.info("\n\nClient Build ============");
-      printWarnings(stats.stats[0].compilation);
-      printErrors(stats.stats[0].compilation);
+      if (typeof stats.constructor === "function") {
+        console.log(stats);
+      }
+      if (
+        stats &&
+        stats.stats &&
+        stats.stats[0] &&
+        stats.stats[0].compilation
+      ) {
+        console.info("\n\nClient Build ============");
+        printWarnings(stats.stats[0].compilation);
+        printErrors(stats.stats[0].compilation);
+      }
 
-      console.info("\n\nServer Build ============");
-      printWarnings(stats.stats[1].compilation);
-      printErrors(stats.stats[1].compilation);
-
+      if (
+        stats &&
+        stats.stats &&
+        stats.stats[1] &&
+        stats.stats[1].compilation
+      ) {
+        console.info("\n\nServer Build ============");
+        printWarnings(stats.stats[1].compilation);
+        printErrors(stats.stats[1].compilation);
+      }
       process.exit(1);
     });
 }

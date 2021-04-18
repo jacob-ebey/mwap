@@ -23,6 +23,17 @@ prog
     ".mwap"
   )
   .option("--mode", "Either 'production' or 'development'", "production")
+  .option(
+    "--analyze",
+    "Analyze the client bundle with webpack-bundle-analyzer? This will open a browser window",
+    false
+  )
+  .option(
+    "--inspect",
+    "Inspect the client bundle for potential performance improvments?",
+    false
+  )
+  .option("--verbose", "Enable more verbose logging?", false)
   .action(build);
 
 prog
@@ -40,6 +51,17 @@ prog
   )
   .option("--mode", "Either 'production' or 'development'", "development")
   .option("--port", "The port to start the server on", 5000)
+  .option(
+    "--analyze",
+    "Analyze the client bundle with webpack-bundle-analyzer? This will open a browser window",
+    false
+  )
+  .option(
+    "--inspect",
+    "Inspect the client bundle for potential performance improvments?",
+    false
+  )
+  .option("--verbose", "Enable more verbose logging?", false)
   .action(dev);
 
 prog

@@ -76,6 +76,12 @@ async function getBaseConfig({ cwd, mode }) {
     module: {
       rules: [
         {
+          test: /\.[t|j]sx?/,
+          include: path.resolve(cwd, "pages"),
+          exclude: mwapPages,
+          loader: require.resolve("@mwap/async/webpack-loader"),
+        },
+        {
           enforce: "pre",
           test: /\.ts$/,
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },

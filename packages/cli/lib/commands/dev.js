@@ -1,3 +1,5 @@
+require("source-map-support").install();
+
 const path = require("path");
 
 const express = require("express");
@@ -25,26 +27,32 @@ async function dev(args) {
 
   serverConfig.output.publicPath = "/.mwap/server-build";
 
-  const compiler = webpack([clientConfig, serverConfig]);
+  const clientCompiler = webpack(clientConfig);
+  const serverCompiler = webpack(serverConfig);
 
   const app = express();
+
   app.use(
-    webpackDevMiddleware(compiler, {
+    webpackDevMiddleware(serverCompiler, {
       serverSideRender: true,
       writeToDisk: true,
     })
   );
 
-  app.use(webpackHotMiddleware(compiler));
+  app.use(
+    webpackDevMiddleware(clientCompiler, {
+      serverSideRender: true,
+      writeToDisk: false,
+    })
+  );
+  app.use(webpackHotMiddleware(clientCompiler));
 
-  app.use((req, res, next) => {
-    clearRequireCache();
-    next();
-  });
   app.use((...params) => {
     if (params[0].path === "/__webpack_hmr") {
       return;
     }
+
+    clearRequireCache();
 
     const serverPath = path.resolve(args.cwd, args.dist, "server/main.js");
     const serverBuild = require(serverPath);

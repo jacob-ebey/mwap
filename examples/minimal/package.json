@@ -4,12 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "node ./node_modules/@mwap/cli/bin/cli.js build",
-    "dev": "node ./node_modules/@mwap/cli/bin/cli.js dev",
-    "start": "node ./node_modules/@mwap/cli/bin/cli.js start"
+    "build": "mwap build",
+    "dev": "mwap dev",
+    "start": "mwap start"
   },
   "dependencies": {
     "@mwap/app": "1.0.0",
+    "@mwap/async": "1.0.0",
     "@mwap/cli": "1.0.0",
     "@mwap/client": "1.0.0",
     "@mwap/loaders": "1.0.0",

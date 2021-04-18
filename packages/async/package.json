@@ -1,29 +1,32 @@
 {
-  "name": "@mwap/server",
+  "name": "@mwap/async",
   "version": "1.0.0",
   "license": "MIT",
-  "source": "src/server.ts",
-  "types": "dist/server.d.ts",
-  "main": "dist/server.js",
-  "module": "dist/server.module.js",
-  "exports": "./dist/server.modern.js",
+  "source": "src/async.ts",
+  "types": "dist/async.d.ts",
+  "main": "dist/async.js",
+  "module": "dist/async.module.js",
+  "exports": {
+    ".": "./dist/async.modern.js",
+    "./webpack-loader": "./webpack-loader/index.js"
+  },
   "files": [
-    "dist"
+    "dist",
+    "webpack-loader"
   ],
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch --jsx React.createElement"
   },
   "dependencies": {
-    "@mwap/app": "1.0.0",
-    "@mwap/async": "1.0.0",
-    "@mwap/loaders": "1.0.0",
     "@mwap/router": "1.0.0",
-    "react-async-ssr": "0.7.2"
+    "loader-utils": "2.0.0",
+    "snake-case": "3.0.4"
   },
   "peerDependencies": {
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "webpack": "*"
   },
   "devDependencies": {
     "@types/node": "14.14.41",
@@ -31,6 +34,7 @@
     "@types/react-dom": "17.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "microbundle": "0.13.0"
+    "microbundle": "0.13.0",
+    "webpack": "5.33.2"
   }
 }

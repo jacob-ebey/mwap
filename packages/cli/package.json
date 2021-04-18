@@ -10,6 +10,7 @@
     "mwap": "./bin/cli.js"
   },
   "peerDependencies": {
+    "@mwap/async": "*",
     "@mwap/client": "*",
     "@mwap/loaders": "*",
     "@mwap/router": "*",
@@ -19,14 +20,20 @@
     "esbuild-loader": "2.12.0",
     "express": "4.17.1",
     "express-promise-router": "4.1.0",
+    "inspectpack": "4.7.1",
     "react": "17.0.2",
     "sade": "1.7.4",
+    "source-map-support": "0.5.19",
     "webpack": "5.33.2",
+    "webpack-bundle-analyzer": "4.4.1",
     "webpack-dev-middleware": "4.1.0",
     "webpack-hot-middleware": "2.25.0",
-    "webpack-stats-plugin": "1.0.3"
+    "webpack-stats-plugin": "1.0.3",
+    "webpack-visualizer-plugin": "0.1.11",
+    "webpackbar": "5.0.0-3"
   },
   "devDependencies": {
+    "@mwap/async": "1.0.0",
     "@mwap/client": "1.0.0",
     "@mwap/loaders": "1.0.0",
     "@mwap/router": "1.0.0",

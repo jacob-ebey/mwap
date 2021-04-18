@@ -4,6 +4,7 @@ export {
   Route,
   StaticRouter,
   Switch,
+  matchPath,
   useHistory,
   useLocation,
   useParams,

@@ -3,11 +3,16 @@ import path from "path";
 import type Express from "express";
 import Router from "express-promise-router";
 
+import { matchPath } from "@mwap/router";
 import { createLoaderContext, render } from "@mwap/server";
 
 import type { StartArgs } from "../types/args";
 
 declare function __non_webpack_require__(id: string): any;
+
+// @ts-ignore
+const mwapPagesModule = require("mwap-pages");
+const mwapPages = mwapPagesModule?.default || mwapPagesModule;
 
 export const createApp = (express: typeof Express, args: StartArgs) => {
   const router = Router();
@@ -35,18 +40,27 @@ export const createApp = (express: typeof Express, args: StartArgs) => {
 
   const statsPath = path.resolve(args.cwd, args.dist, "server/stats.json");
 
-  router.use(async (req, res) => {
-    const devStats = (res as any)?.locals?.webpack?.devMiddleware?.stats?.stats?.[0]?.toJson();
-
+  router.use(async (req, res, next) => {
+    const devStats = (res as any)?.locals?.webpack?.devMiddleware?.stats?.toJson();
     const stats = devStats || __non_webpack_require__(statsPath);
+
     const protocol = req.protocol || "http";
     const host = req.get("host") || `localhost:${args.port}`;
     const url = new URL(`${protocol}://${host}${req.originalUrl || req.url}`);
+
+    const path = mwapPages.find((page) => matchPath(url.pathname, page));
+
+    if (!path) {
+      next();
+      return;
+    }
+
     const html = await render({
       location: url.pathname,
       search: url.search,
       stats,
     });
+
     res.setHeader("content-type", "text/html");
     res.send(html);
   });
