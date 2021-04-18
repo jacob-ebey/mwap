@@ -22,7 +22,6 @@ const DynamicComponent = dynamic(() => import(
   /* webpackChunkName: ${webpackChunkName} */ ${componentRequest}),
   {
     __chunkId: ${webpackChunkName},
-    __issuer: require.resolveWeak(${componentRequest})
   }
 );
 
