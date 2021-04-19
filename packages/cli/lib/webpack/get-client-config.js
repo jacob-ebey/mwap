@@ -57,6 +57,30 @@ async function getClientConfig(args) {
     ],
   });
 
+  config.module.rules.push({
+    test: /\.css$/,
+    exclude: /\.module\.css$/,
+    use: [
+      isProd ? MiniCssExtractPlugin.loader : require.resolve("style-loader"),
+      {
+        loader: require.resolve("css-loader"),
+        options: {
+          importLoaders: 1,
+          sourceMap: true,
+        },
+      },
+      {
+        loader: require.resolve("postcss-loader"),
+        options: {
+          sourceMap: true,
+          postcssOptions: {
+            config: postcssConfig,
+          },
+        },
+      },
+    ],
+  });
+
   if (isProd) {
     config.plugins.push(new MiniCssExtractPlugin());
   }

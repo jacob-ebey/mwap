@@ -49,6 +49,12 @@ async function getServerConfig(args) {
     ],
   });
 
+  config.module.rules.push({
+    include: /\.css$/,
+    exclude: /\.module\.css$/,
+    loader: "null-loader",
+  });
+
   config.plugins.push(
     new WebpackBar({
       color: "green",

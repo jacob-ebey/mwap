@@ -1,17 +1,13 @@
 import * as React from "react";
 
-import { Body, Head } from "@mwap/server";
+import { Body, Head, Html } from "@mwap/server";
 
 const Document = () => {
   return (
-    <html>
-      <head>
-        <Head />
-      </head>
-      <body>
-        <Body />
-      </body>
-    </html>
+    <Html>
+      <Head />
+      <Body />
+    </Html>
   );
 };
 

@@ -6,6 +6,7 @@ import { renderToStringAsync } from "react-async-ssr";
 
 import { AppShell } from "@mwap/app";
 import { AsyncProvider } from "@mwap/async";
+import { HeadProvider, FilledContext } from "@mwap/head";
 import { LoaderProvider } from "@mwap/loaders";
 import { StaticRouter } from "@mwap/router";
 
@@ -27,16 +28,19 @@ export type RenderOptions = {
 export const render = async ({ location, search, stats }: RenderOptions) => {
   const loaderContext = createLoaderContext();
   const chunks = new Set<string>();
+  const head = {} as FilledContext;
 
   const appHtml: string = await renderToStringAsync(
     <Suspense fallback={""}>
-      <StaticRouter location={location}>
-        <AsyncProvider chunks={chunks}>
-          <LoaderProvider getData={loaderContext.getData} search={search}>
-            <AppShell />
-          </LoaderProvider>
-        </AsyncProvider>
-      </StaticRouter>
+      <AsyncProvider chunks={chunks}>
+        <HeadProvider context={head}>
+          <StaticRouter location={location}>
+            <LoaderProvider getData={loaderContext.getData} search={search}>
+              <AppShell />
+            </LoaderProvider>
+          </StaticRouter>
+        </HeadProvider>
+      </AsyncProvider>
     </Suspense>,
     {}
   );
@@ -45,6 +49,7 @@ export const render = async ({ location, search, stats }: RenderOptions) => {
     <DocumentProvider
       appHtml={appHtml}
       chunks={chunks}
+      helmet={head.helmet}
       loaderCache={loaderContext.loaderCache}
       stats={stats}
     >

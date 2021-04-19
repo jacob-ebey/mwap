@@ -20,6 +20,11 @@ function clearRequireCache() {
  * @param {import("../../types/args").DevArgs} args
  */
 async function dev(args) {
+  process.env.NODE_ENV =
+    process.env.NODE_ENV || args.mode !== "development"
+      ? "production"
+      : "development";
+
   const [clientConfig, serverConfig] = await Promise.all([
     getClientConfig(args),
     getServerConfig(args),

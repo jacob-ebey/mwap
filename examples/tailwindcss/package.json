@@ -1,5 +1,5 @@
 {
-  "name": "@mwap/example-minimal",
+  "name": "@mwap/example-tailwindcss",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "@types/react": "17.0.3",
-    "postcss-typescript-css": "0.2.1"
+    "tailwindcss": "2.1.1"
   }
 }

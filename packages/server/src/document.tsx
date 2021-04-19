@@ -2,6 +2,8 @@ import * as React from "react";
 import { Fragment, createContext, useContext } from "react";
 import type { FC } from "react";
 
+import type { FilledContext } from "@mwap/head";
+
 import type { LoaderCacheValue } from "./loaders";
 
 export type ClientBuildStats = {
@@ -11,6 +13,7 @@ export type ClientBuildStats = {
 type DocumentContext = {
   appHtml: string;
   chunks: Set<string | number>;
+  helmet: FilledContext["helmet"];
   loaderCache: Map<string, LoaderCacheValue<unknown>>;
   stats: ClientBuildStats;
 };
@@ -30,12 +33,23 @@ export const DocumentProvider: FC<DocumentContext> = ({
   );
 };
 
-export const Body = ({ publicPath = "/.mwap/" }) => {
-  const { appHtml, chunks, loaderCache, stats } = useContext(documentContext);
+type PublicPathProps = {
+  publicPath?: string;
+};
+
+export const Body: FC<PublicPathProps> = ({
+  publicPath = "/.mwap/",
+  children,
+}) => {
+  const { appHtml, chunks, helmet, loaderCache, stats } = useContext(
+    documentContext
+  );
 
   return (
-    <Fragment>
+    <body {...helmet.bodyAttributes.toComponent()}>
+      {helmet.noscript.toComponent()}
       <div id="__mwap__" dangerouslySetInnerHTML={{ __html: appHtml }} />
+      {children}
       <script
         type="__ASYNC_CHUNKS__"
         dangerouslySetInnerHTML={{
@@ -55,6 +69,7 @@ export const Body = ({ publicPath = "/.mwap/" }) => {
           ),
         }}
       />
+      {helmet.script.toComponent()}
       {Array.from(chunks).map((chunk) =>
         stats.assetsByChunkName[chunk] ? (
           <Fragment key={chunk}>
@@ -71,19 +86,50 @@ export const Body = ({ publicPath = "/.mwap/" }) => {
           <script key={asset} src={`${publicPath}${asset}`} />
         ) : null
       )}
-    </Fragment>
+    </body>
   );
 };
 
-export const Head = ({ publicPath = "/.mwap/" }) => {
-  const { chunks, stats } = useContext(documentContext);
+export const Html: FC = ({ children }) => {
+  const { helmet } = useContext(documentContext);
+
+  return <html {...helmet.htmlAttributes.toComponent()}>{children}</html>;
+};
+
+export const Head: FC<PublicPathProps> = ({
+  publicPath = "/.mwap/",
+  children,
+}) => {
+  const { chunks, stats, helmet } = useContext(documentContext);
+
   return (
-    <Fragment>
+    <head>
+      {helmet.title.toComponent()}
+      {helmet.meta.toComponent()}
+      {helmet.style.toComponent()}
+      {helmet.link.toComponent()}
+
+      {Array.from(chunks).map((chunk) =>
+        stats.assetsByChunkName[chunk] ? (
+          <Fragment key={chunk}>
+            {stats.assetsByChunkName[chunk].map((asset) =>
+              asset.endsWith(".css") ? (
+                <link
+                  key={asset}
+                  rel="stylesheet"
+                  href={`${publicPath}${asset}`}
+                />
+              ) : null
+            )}
+          </Fragment>
+        ) : null
+      )}
       {stats.assetsByChunkName["main"].map((asset) =>
         asset.endsWith(".css") ? (
           <link key={asset} rel="stylesheet" href={`${publicPath}${asset}`} />
         ) : null
       )}
-    </Fragment>
+      {children}
+    </head>
   );
 };

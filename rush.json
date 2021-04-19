@@ -384,6 +384,10 @@
       "projectFolder": "examples/minimal"
     },
     {
+      "packageName": "@mwap/example-tailwindcss",
+      "projectFolder": "examples/tailwindcss"
+    },
+    {
       "packageName": "@mwap/app",
       "projectFolder": "packages/app"
     },
@@ -398,6 +402,10 @@
     {
       "packageName": "@mwap/client",
       "projectFolder": "packages/client"
+    },
+    {
+      "packageName": "@mwap/head",
+      "projectFolder": "packages/head"
     },
     {
       "packageName": "@mwap/loaders",

@@ -4,6 +4,7 @@ import type { ComponentType } from "react";
 import { hydrate as reactHydrate } from "react-dom";
 
 import { AppShell } from "@mwap/app";
+import { HeadProvider } from "@mwap/head";
 import { LoaderProvider } from "@mwap/loaders";
 import { BrowserRouter, useLocation } from "@mwap/router";
 
@@ -52,9 +53,11 @@ export const hydrate = async () => {
 
   reactHydrate(
     <Suspense fallback={""}>
-      <BrowserRouter>
-        <AppWithLoaders />
-      </BrowserRouter>
+      <HeadProvider>
+        <BrowserRouter>
+          <AppWithLoaders />
+        </BrowserRouter>
+      </HeadProvider>
     </Suspense>,
     element
   );

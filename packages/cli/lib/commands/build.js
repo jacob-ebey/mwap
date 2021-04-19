@@ -20,6 +20,11 @@ function printErrors(compilation) {
  * @param {import("../../types/args").BuildArgs} args
  */
 async function build({ _, ...args }) {
+  process.env.NODE_ENV =
+    process.env.NODE_ENV || args.mode !== "development"
+      ? "production"
+      : "development";
+
   const [clientConfig, serverConfig] = await Promise.all([
     getClientConfig(args),
     getServerConfig(args),

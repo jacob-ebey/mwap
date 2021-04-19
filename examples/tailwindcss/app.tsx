@@ -3,21 +3,20 @@ import { Fragment, Suspense } from "react";
 
 import { Head } from "@mwap/head";
 
-import Header from "./components/header";
+import "./styles/global.css";
 
 const App = ({ children }) => {
   return (
     <Fragment>
       <Head
         htmlAttributes={{ lang: "en" }}
-        defaultTitle="@mwap minimal example"
-        titleTemplate="%s | @mwap minimal example"
+        defaultTitle="@mwap tailwindcss example"
+        titleTemplate="%s | @mwap tailwindcss example"
       >
         <meta
           name="description"
-          content="A minimal example demonstrating the @mwap framework."
+          content="An example demonstrating tailwindcss within the @mwap framework."
         />
-
         <meta charSet="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,8 +39,6 @@ const App = ({ children }) => {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-
-      <Header />
 
       <Suspense fallback={""}>{children}</Suspense>
     </Fragment>

@@ -12,6 +12,7 @@
   "peerDependencies": {
     "@mwap/async": "*",
     "@mwap/client": "*",
+    "@mwap/head": "*",
     "@mwap/loaders": "*",
     "@mwap/router": "*",
     "@mwap/server": "*"
@@ -24,6 +25,7 @@
     "express-promise-router": "4.1.0",
     "inspectpack": "4.7.1",
     "mini-css-extract-plugin": "1.5.0",
+    "null-loader": "4.0.1",
     "postcss": "8.2.10",
     "postcss-loader": "5.2.0",
     "react": "17.0.2",
@@ -41,6 +43,7 @@
   "devDependencies": {
     "@mwap/async": "1.0.0",
     "@mwap/client": "1.0.0",
+    "@mwap/head": "1.0.0",
     "@mwap/loaders": "1.0.0",
     "@mwap/router": "1.0.0",
     "@mwap/server": "1.0.0",
