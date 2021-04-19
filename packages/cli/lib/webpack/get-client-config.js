@@ -1,11 +1,13 @@
 const path = require("path");
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 const { StatsWriterPlugin } = require("webpack-stats-plugin");
 const WebpackBar = require("webpackbar");
 
 const getBaseConfig = require("./get-base-config");
 const resolveEntry = require("../utils/resolve-entry");
+const resolvePostCssConfig = require("../utils/resolve-postcss-config");
 
 /**
  * @param {import("../../types/args").BuildArgs}
@@ -14,11 +16,12 @@ const resolveEntry = require("../utils/resolve-entry");
 async function getClientConfig(args) {
   const isProd = args.mode !== "development";
 
-  const [config, entry] = await Promise.all([
+  const [config, entry, postcssConfig] = await Promise.all([
     getBaseConfig(args),
     resolveEntry(path.resolve(args.cwd, "client")).then(
       (r) => r || path.resolve(__dirname, "../../runtime/client")
     ),
+    resolvePostCssConfig(args.cwd),
   ]);
 
   config.entry = [entry];
@@ -27,6 +30,36 @@ async function getClientConfig(args) {
     path: path.resolve(args.cwd, args.dist, "client"),
     publicPath: "/.mwap/",
   };
+
+  config.module.rules.push({
+    test: /\.module\.css$/,
+    use: [
+      isProd ? MiniCssExtractPlugin.loader : require.resolve("style-loader"),
+      {
+        loader: require.resolve("css-loader"),
+        options: {
+          modules: {
+            localIdentName: "[local]__[hash:base64:5]",
+          },
+          importLoaders: 1,
+          sourceMap: true,
+        },
+      },
+      {
+        loader: require.resolve("postcss-loader"),
+        options: {
+          sourceMap: true,
+          postcssOptions: {
+            config: postcssConfig,
+          },
+        },
+      },
+    ],
+  });
+
+  if (isProd) {
+    config.plugins.push(new MiniCssExtractPlugin());
+  }
 
   config.plugins.push(
     new WebpackBar({
@@ -48,22 +81,6 @@ async function getClientConfig(args) {
   if (!isProd) {
     config.entry = ["webpack-hot-middleware/client", ...config.entry];
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
-  }
-
-  if (isProd) {
-    config.optimization = {
-      moduleIds: "deterministic",
-      runtimeChunk: "single",
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
-        },
-      },
-    };
   }
 
   if (args.analyze) {

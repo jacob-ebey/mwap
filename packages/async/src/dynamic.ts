@@ -37,11 +37,6 @@ type DynamicOptions = {
    * This is for internal use. Don't set it unless you know what you are doing. Shit will break.
    */
   __chunkId?: string | number;
-  /**
-   * Render the component on the server?
-   * @default true
-   */
-  ssr?: boolean;
 };
 
 export const dynamic = <

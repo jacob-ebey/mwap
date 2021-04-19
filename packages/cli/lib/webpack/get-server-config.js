@@ -34,6 +34,21 @@ async function getServerConfig(args) {
 
   config.entry = [path.resolve(__dirname, "../../runtime/express")];
 
+  config.module.rules.push({
+    include: /\.module\.css$/,
+    use: [
+      {
+        loader: "css-loader",
+        options: {
+          modules: {
+            exportOnlyLocals: true,
+            localIdentName: "[local]__[hash:base64:5]",
+          },
+        },
+      },
+    ],
+  });
+
   config.plugins.push(
     new WebpackBar({
       color: "green",

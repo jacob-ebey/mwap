@@ -10,8 +10,6 @@ pwrcAsyncLoader.pitch = function pitch(request) {
   const relativeRequest = baseRequest.replace(this.rootContext + "/", "");
   const chunkId = snakeCase(relativeRequest);
 
-  const issuer = JSON.stringify(baseRequest);
-
   const webpackChunkName = JSON.stringify(chunkId);
 
   return `

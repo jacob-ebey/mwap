@@ -13,7 +13,7 @@ const AboutPage: FC = () => {
   return (
     <div>
       <h1>{message}</h1>
-      
+
       <button onClick={() => setCount(count + 1)}>Count: {count}</button>
     </div>
   );

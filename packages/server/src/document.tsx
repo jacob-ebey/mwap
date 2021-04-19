@@ -60,7 +60,7 @@ export const Body = ({ publicPath = "/.mwap/" }) => {
           <Fragment key={chunk}>
             {stats.assetsByChunkName[chunk].map((asset) =>
               asset.endsWith(".js") ? (
-                <script key={asset} defer src={`${publicPath}${asset}`} />
+                <script key={asset} src={`${publicPath}${asset}`} />
               ) : null
             )}
           </Fragment>
@@ -75,4 +75,15 @@ export const Body = ({ publicPath = "/.mwap/" }) => {
   );
 };
 
-export const Head = () => null;
+export const Head = ({ publicPath = "/.mwap/" }) => {
+  const { chunks, stats } = useContext(documentContext);
+  return (
+    <Fragment>
+      {stats.assetsByChunkName["main"].map((asset) =>
+        asset.endsWith(".css") ? (
+          <link key={asset} rel="stylesheet" href={`${publicPath}${asset}`} />
+        ) : null
+      )}
+    </Fragment>
+  );
+};

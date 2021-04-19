@@ -4,7 +4,6 @@ const webpack = require("webpack");
 const { ESBuildMinifyPlugin } = require("esbuild-loader");
 
 const findAllNodeModules = require("../utils/find-all-node-modules");
-// const readPackageJson = require("../utils/react-package-json");
 const resolveEntry = require("../utils/resolve-entry");
 const resolveTsconfig = require("../utils/resolve-tsconfig");
 const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
@@ -16,14 +15,12 @@ async function getBaseConfig({ cwd, mode }) {
   const isProd = mode !== "development";
 
   const [
-    // pkg,
     userNodeModules,
     cliNodeModules,
     tsconfig,
     mwapApp,
     mwapPages,
   ] = await Promise.all([
-    // readPackageJson(cwd),
     findAllNodeModules(cwd),
     findAllNodeModules(__dirname),
     resolveTsconfig(cwd, isProd),
