@@ -22,7 +22,6 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/react": "17.0.3",
-    "postcss-typescript-css": "0.2.1"
+    "@types/react": "17.0.3"
   }
 }
