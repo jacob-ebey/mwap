@@ -60,7 +60,7 @@ export const Body = ({ publicPath = "/.mwap/" }) => {
           <Fragment key={chunk}>
             {stats.assetsByChunkName[chunk].map((asset) =>
               asset.endsWith(".js") ? (
-                <script key={asset} src={`${publicPath}${asset}`} />
+                <script key={asset} defer src={`${publicPath}${asset}`} />
               ) : null
             )}
           </Fragment>
