@@ -12,7 +12,9 @@ const getServerConfig = require("../webpack/get-server-config");
 
 function clearRequireCache() {
   Object.keys(require.cache).forEach((key) => {
-    delete require.cache[key];
+    if (!key.match(/node_modules\//)) {
+      delete require.cache[key];
+    }
   });
 }
 

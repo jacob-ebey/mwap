@@ -5,7 +5,7 @@ export type HomePageData = {
   ttl: number;
 };
 
-const loader: Loader<HomePageData> = () => {
+const loader: Loader<HomePageData> = ({ search }) => {
   return {
     name: "World",
     ttl: 604800,

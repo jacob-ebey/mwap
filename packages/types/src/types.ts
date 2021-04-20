@@ -5,6 +5,7 @@ type CommonArgs = {
 };
 
 export type BuildArgs = CommonArgs & {
+  entry?: string;
   analyze?: boolean;
   inspect?: boolean;
   verbose?: boolean;

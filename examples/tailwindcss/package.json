@@ -13,6 +13,7 @@
     "@mwap/async": "1.0.0",
     "@mwap/cli": "1.0.0",
     "@mwap/client": "1.0.0",
+    "@mwap/express": "1.0.0",
     "@mwap/head": "1.0.0",
     "@mwap/loaders": "1.0.0",
     "@mwap/router": "1.0.0",

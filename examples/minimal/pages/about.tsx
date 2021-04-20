@@ -7,7 +7,7 @@ import { useLoader } from "@mwap/loaders";
 
 import type { AboutPageData } from "../loaders/about";
 
-import styles from "./about.module.css";
+import styles from "./about.module.scss";
 
 const AboutPage: FC = () => {
   const { message } = useLoader<AboutPageData>("about");

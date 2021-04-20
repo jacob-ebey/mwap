@@ -12,6 +12,7 @@ const prog = sade(pkg.name).version(pkg.version);
 prog
   .command("build")
   .describe("Build your project for production.")
+  .option("--entry", "The package to use as an entry point", "@mwap/express")
   .option(
     "--cwd",
     "The current working directory to build your app from",

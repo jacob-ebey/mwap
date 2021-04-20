@@ -404,6 +404,10 @@
       "projectFolder": "packages/client"
     },
     {
+      "packageName": "@mwap/express",
+      "projectFolder": "packages/express"
+    },
+    {
       "packageName": "@mwap/head",
       "projectFolder": "packages/head"
     },
@@ -418,6 +422,10 @@
     {
       "packageName": "@mwap/server",
       "projectFolder": "packages/server"
+    },
+    {
+      "packageName": "@mwap/types",
+      "projectFolder": "packages/types"
     }
     // {
     //   /**

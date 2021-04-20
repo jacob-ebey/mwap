@@ -6,7 +6,6 @@ const { ESBuildMinifyPlugin } = require("esbuild-loader");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const resolveEntry = require("../utils/resolve-entry");
 const resolveTsconfig = require("../utils/resolve-tsconfig");
-const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
 
 /**
  * @returns {Promise<import("webpack").Configuration>}
@@ -42,7 +41,17 @@ async function getBaseConfig({ cwd, mode }) {
     context: path.resolve(cwd),
     resolve: {
       modules: [...nodeModules, "node_modules"],
-      extensions: [".mjs", ".js", ".jsx", ".ts", ".tsx", ".json", ".css"],
+      extensions: [
+        ".mjs",
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".json",
+        ".css",
+        ".scss",
+        ".sass",
+      ],
       alias: {
         "mwap-app": mwapApp,
         "mwap-pages": mwapPages,
@@ -73,7 +82,7 @@ async function getBaseConfig({ cwd, mode }) {
     module: {
       rules: [
         {
-          test: /\.[t|j]sx?/,
+          test: /\.[tj]sx?/,
           include: path.resolve(cwd, "pages"),
           exclude: mwapPages,
           loader: require.resolve("@mwap/async/webpack-loader"),

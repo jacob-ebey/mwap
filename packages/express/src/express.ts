@@ -1,12 +1,11 @@
-import path from "path";
+import * as path from "path";
 
-import type Express from "express";
 import Router from "express-promise-router";
 
 import { matchPath } from "@mwap/router";
 import { createLoaderContext, render } from "@mwap/server";
 
-import type { StartArgs } from "../types/args";
+import type { StartArgs } from "@mwap/types";
 
 declare function __non_webpack_require__(id: string): any;
 
@@ -14,8 +13,8 @@ declare function __non_webpack_require__(id: string): any;
 const mwapPagesModule = require("mwap-pages");
 const mwapPages = mwapPagesModule?.default || mwapPagesModule;
 
-export const createApp = (express: typeof Express, args: StartArgs) => {
-  const router = Router();
+export const createApp = (express: any, args: StartArgs) => {
+  const router: any = Router();
 
   router.use("/.mwap/loaders", async (req, res) => {
     const loaderContext = createLoaderContext();

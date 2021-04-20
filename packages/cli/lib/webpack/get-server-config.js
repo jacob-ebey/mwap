@@ -2,14 +2,24 @@ const path = require("path");
 
 const WebpackBar = require("webpackbar");
 
+const findAllNodeModules = require("../utils/find-all-node-modules");
+const getSassConfiguration = require("../utils/get-sass-options");
 const getBaseConfig = require("./get-base-config");
 const resolveEntry = require("../utils/resolve-entry");
+const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
 
 /**
+ * @param {import("@mwap/types").BuildArgs} args
  * @returns {Promise<import("webpack").Configuration>}
  */
 async function getServerConfig(args) {
-  const [config, mwapDocument, mwapLoaders] = await Promise.all([
+  const [
+    userNodeModules,
+    config,
+    mwapDocument,
+    mwapLoaders,
+  ] = await Promise.all([
+    findAllNodeModules(args.cwd),
     getBaseConfig(args),
     resolveEntry(path.resolve(args.cwd, "document")).then(
       (r) => r || path.resolve(__dirname, "../../runtime/document")
@@ -32,10 +42,25 @@ async function getServerConfig(args) {
     express: "commonjs express",
   };
 
-  config.entry = [path.resolve(__dirname, "../../runtime/express")];
+  config.entry = [args.entry || "@mwap/express"];
 
   config.module.rules.push({
-    include: /\.module\.css$/,
+    enforce: "pre",
+    test: /\.s[ac]ss$/,
+    use: [
+      {
+        loader: require.resolve("./proxy-loader"),
+        options: {
+          cwd: args.cwd,
+          loader: tryResolveOptionalLoader("sass-loader"),
+          options: getSassConfiguration(...userNodeModules),
+        },
+      },
+    ],
+  });
+
+  config.module.rules.push({
+    include: /\.module\.(p?css|s[ac]ss)$/,
     use: [
       {
         loader: "css-loader",
@@ -50,8 +75,8 @@ async function getServerConfig(args) {
   });
 
   config.module.rules.push({
-    include: /\.css$/,
-    exclude: /\.module\.css$/,
+    test: /\.(p?css|s[ac]ss)$/,
+    exclude: /\.module\.(p?css|s[ac]ss)$/,
     loader: "null-loader",
   });
 

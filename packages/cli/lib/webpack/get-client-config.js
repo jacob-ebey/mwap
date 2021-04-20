@@ -5,18 +5,23 @@ const webpack = require("webpack");
 const { StatsWriterPlugin } = require("webpack-stats-plugin");
 const WebpackBar = require("webpackbar");
 
-const getBaseConfig = require("./get-base-config");
+const findAllNodeModules = require("../utils/find-all-node-modules");
+const getSassConfiguration = require("../utils/get-sass-options");
 const resolveEntry = require("../utils/resolve-entry");
 const resolvePostCssConfig = require("../utils/resolve-postcss-config");
+const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
+
+const getBaseConfig = require("./get-base-config");
 
 /**
- * @param {import("../../types/args").BuildArgs}
+ * @param {import("@mwap/types").BuildArgs}
  * @returns {Promise<import("webpack").Configuration>}
  */
 async function getClientConfig(args) {
   const isProd = args.mode !== "development";
 
-  const [config, entry, postcssConfig] = await Promise.all([
+  const [userNodeModules, config, entry, postcssConfig] = await Promise.all([
+    findAllNodeModules(args.cwd),
     getBaseConfig(args),
     resolveEntry(path.resolve(args.cwd, "client")).then(
       (r) => r || path.resolve(__dirname, "../../runtime/client")
@@ -32,7 +37,22 @@ async function getClientConfig(args) {
   };
 
   config.module.rules.push({
-    test: /\.module\.css$/,
+    enforce: "pre",
+    test: /\.s[ac]ss$/,
+    use: [
+      {
+        loader: require.resolve("./proxy-loader"),
+        options: {
+          cwd: args.cwd,
+          loader: tryResolveOptionalLoader("sass-loader"),
+          options: getSassConfiguration(...userNodeModules),
+        },
+      },
+    ],
+  });
+
+  config.module.rules.push({
+    test: /\.module\.(p?css|s[ac]ss)$/,
     use: [
       isProd ? MiniCssExtractPlugin.loader : require.resolve("style-loader"),
       {
@@ -58,8 +78,8 @@ async function getClientConfig(args) {
   });
 
   config.module.rules.push({
-    test: /\.css$/,
-    exclude: /\.module\.css$/,
+    test: /\.(p?css|s[ac]ss)$/,
+    exclude: /\.module\.(p?css|s[ac]ss)$/,
     use: [
       isProd ? MiniCssExtractPlugin.loader : require.resolve("style-loader"),
       {
@@ -103,8 +123,29 @@ async function getClientConfig(args) {
   );
 
   if (!isProd) {
+    const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
     config.entry = ["webpack-hot-middleware/client", ...config.entry];
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    config.plugins.push(
+      new ReactRefreshWebpackPlugin({
+        overlay: {
+          sockIntegration: "whm",
+        },
+      })
+    );
+    config.module.rules.push({
+      test: /\.[jt]sx?$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: require.resolve("babel-loader"),
+          options: {
+            plugins: [require.resolve("react-refresh/babel")],
+          },
+        },
+      ],
+    });
   }
 
   if (args.analyze) {

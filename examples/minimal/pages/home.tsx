@@ -7,7 +7,7 @@ import { useLoader } from "@mwap/loaders";
 
 import type { HomePageData } from "../loaders/home";
 
-import styles from "./home.module.css";
+import styles from "./home.module.scss";
 
 const HomePage: FC = () => {
   const { name } = useLoader<HomePageData>("home");
