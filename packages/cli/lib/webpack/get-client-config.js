@@ -102,7 +102,22 @@ async function getClientConfig(args) {
   });
 
   if (isProd) {
-    config.plugins.push(new MiniCssExtractPlugin());
+    config.output.filename = "[contenthash].js";
+    config.output.chunkFilename = "[contenthash].js";
+    config.plugins.push(
+      new MiniCssExtractPlugin({
+        filename: "[contenthash].css",
+      })
+    );
+    config.optimization.splitChunks = {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+        },
+      },
+    };
   }
 
   config.plugins.push(

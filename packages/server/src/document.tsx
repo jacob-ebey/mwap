@@ -81,9 +81,15 @@ export const Body: FC<PublicPathProps> = ({
           </Fragment>
         ) : null
       )}
-      {stats.assetsByChunkName["main"].map((asset) =>
-        !asset.endsWith(".hot-update.js") && asset.endsWith(".js") ? (
-          <script key={asset} src={`${publicPath}${asset}`} />
+      {["vendors", "main"].map((chunk) =>
+        stats.assetsByChunkName[chunk] ? (
+          <Fragment key={chunk}>
+            {stats.assetsByChunkName[chunk].map((asset) =>
+              !asset.endsWith(".hot-update.js") && asset.endsWith(".js") ? (
+                <script key={asset} src={`${publicPath}${asset}`} />
+              ) : null
+            )}
+          </Fragment>
         ) : null
       )}
     </body>
