@@ -2,6 +2,7 @@ const path = require("path");
 
 const WebpackBar = require("webpackbar");
 
+const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getSassConfiguration = require("../utils/get-sass-options");
 const getBaseConfig = require("./get-base-config");
@@ -87,6 +88,8 @@ async function getServerConfig(args) {
       reporters: ["fancy"],
     })
   );
+
+  await applyUserConfig(Object.assign({}, args, { isServer: true }), config);
 
   return config;
 }

@@ -404,6 +404,10 @@
       "projectFolder": "packages/client"
     },
     {
+      "packageName": "@mwap/docs",
+      "projectFolder": "docs"
+    },
+    {
       "packageName": "@mwap/express",
       "projectFolder": "packages/express"
     },

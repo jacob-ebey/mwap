@@ -1,0 +1,15 @@
+{
+  "components": [
+    {
+      "name": "hero",
+      "props": {
+        "title": "Micro Web App Platform",
+        "description": "A less opinionated, but still opinionated enough React platform that supports automatic page code splitting, suspense on the server and a data loaders pattern that make edge caching a breeze.",
+        "link": {
+          "label": "View the docs",
+          "to": "/docs"
+        }
+      }
+    }
+  ]
+}

@@ -71,6 +71,15 @@ async function getBaseConfig({ cwd, mode }) {
           css: true,
         }),
       ],
+      splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+          },
+        },
+      },
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -82,9 +91,12 @@ async function getBaseConfig({ cwd, mode }) {
     module: {
       rules: [
         {
-          test: /\.[tj]sx?/,
-          include: path.resolve(cwd, "pages"),
-          exclude: mwapPages,
+          test: /\.[tj]sx?$/,
+          include: [
+            path.resolve(cwd, "components/async"),
+            path.resolve(cwd, "pages"),
+          ],
+          exclude: [/node_modules/, mwapPages],
           loader: require.resolve("@mwap/async/webpack-loader"),
         },
         {

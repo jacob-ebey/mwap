@@ -5,6 +5,7 @@ const webpack = require("webpack");
 const { StatsWriterPlugin } = require("webpack-stats-plugin");
 const WebpackBar = require("webpackbar");
 
+const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getSassConfiguration = require("../utils/get-sass-options");
 const resolveEntry = require("../utils/resolve-entry");
@@ -77,11 +78,17 @@ async function getClientConfig(args) {
     ],
   });
 
+  config.plugins.push(
+    new MiniCssExtractPlugin({
+      filename: "[contenthash].css",
+    })
+  );
+
   config.module.rules.push({
     test: /\.(p?css|s[ac]ss)$/,
     exclude: /\.module\.(p?css|s[ac]ss)$/,
     use: [
-      isProd ? MiniCssExtractPlugin.loader : require.resolve("style-loader"),
+      MiniCssExtractPlugin.loader,
       {
         loader: require.resolve("css-loader"),
         options: {
@@ -104,20 +111,6 @@ async function getClientConfig(args) {
   if (isProd) {
     config.output.filename = "[contenthash].js";
     config.output.chunkFilename = "[contenthash].js";
-    config.plugins.push(
-      new MiniCssExtractPlugin({
-        filename: "[contenthash].css",
-      })
-    );
-    config.optimization.splitChunks = {
-      chunks: "all",
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-        },
-      },
-    };
   }
 
   config.plugins.push(
@@ -178,6 +171,8 @@ async function getClientConfig(args) {
       })
     );
   }
+
+  await applyUserConfig(Object.assign({}, args, { isServer: false }), config);
 
   return config;
 }

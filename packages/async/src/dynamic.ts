@@ -43,7 +43,7 @@ export const dynamic = <
   TModule extends DefaultModule<ComponentType> | ComponentType
 >(
   load: () => TModule | Promise<TModule>,
-  options: DynamicOptions
+  options?: DynamicOptions
 ): DynamicComponent<InferedModuleProps<TModule>> => {
   let promise: Promise<void>;
   let Component: ComponentType<InferedModuleProps<TModule>> =
