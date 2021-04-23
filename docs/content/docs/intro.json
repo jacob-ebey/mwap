@@ -14,11 +14,7 @@
           },
           {
             "to": "/docs/data-fetching",
-            "label": "Data Fetching"
-          },
-          {
-            "to": "/docs/configuration",
-            "label": "Custom Configuration"
+            "label": "Data Loaders"
           }
         ]
       }

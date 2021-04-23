@@ -5,16 +5,16 @@
       "props": {
         "links": [
           {
-            "to": "/docs/built-in-css-support",
-            "label": "CSS Support"
-          },
-          {
             "to": "/docs/custom-app",
             "label": "Custom App"
           },
           {
             "to": "/docs/custom-document",
             "label": "Custom Document"
+          },
+          {
+            "to": "/docs/configuration",
+            "label": "MWAP Configuration"
           }
         ]
       }

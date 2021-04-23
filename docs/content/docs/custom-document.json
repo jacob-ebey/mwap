@@ -5,14 +5,6 @@
       "props": {
         "links": [
           {
-            "to": "/docs/data-loaders",
-            "label": "Data Loaders"
-          },
-          {
-            "to": "/docs/custom-app",
-            "label": "Custom App"
-          },
-          {
             "to": "/docs/configuration",
             "label": "MWAP Configuration"
           }

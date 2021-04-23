@@ -9,8 +9,8 @@
             "label": "CSS Support"
           },
           {
-            "to": "/docs/data-fetching",
-            "label": "Data Fetching"
+            "to": "/docs/data-loaders",
+            "label": "Data Loaders"
           },
           {
             "to": "/docs/custom-app",

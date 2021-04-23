@@ -5,16 +5,16 @@
       "props": {
         "links": [
           {
+            "to": "/docs/pages",
+            "label": "Pages"
+          },
+          {
+            "to": "/docs/built-in-css-support",
+            "label": "CSS Support"
+          },
+          {
             "to": "/docs/data-loaders",
             "label": "Data Loaders"
-          },
-          {
-            "to": "/docs/custom-app",
-            "label": "Custom App"
-          },
-          {
-            "to": "/docs/configuration",
-            "label": "MWAP Configuration"
           }
         ]
       }
