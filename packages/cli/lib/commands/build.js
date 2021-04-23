@@ -58,7 +58,7 @@ async function build({ _, ...args }) {
         console.info(stats.toString({ errorDetails: "verbose" }));
       }
 
-      console.log("NO BUILD ERROR");
+      console.error("NO BUILD ERROR");
 
       process.exit(0);
     })
@@ -88,7 +88,7 @@ async function build({ _, ...args }) {
         printWarnings(stats.stats[1].compilation);
         printErrors(stats.stats[1].compilation);
       }
-      console.log("BUILD ERROR :(!");
+      console.error("BUILD ERROR :(!");
       process.exit(1);
     });
 }
