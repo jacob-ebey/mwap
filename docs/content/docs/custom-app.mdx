@@ -1,0 +1,27 @@
+---
+title: Custom App
+imports:
+  data: ./custom-app.json
+  customApp: ./examples/custom-app.example.tsx
+---
+
+# Custom App
+
+MWAP uses the `App` component to wrap your root pages. You can override it by creating either an `app.tsx`, `app.ts`, `app.js`, or `app.jsx`.
+
+Overriding the App allows you to do things like:
+
+- Add global styles
+- Render an app shell
+- Provide global state
+- And even `useLoader`
+
+A custom `app.tsx` might look something like:
+
+<Code language="tsx" code={customApp} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

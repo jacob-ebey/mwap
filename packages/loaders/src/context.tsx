@@ -2,23 +2,20 @@ import * as React from "react";
 import { createContext } from "react";
 import type { FC } from "react";
 
-export type GetLoaderData = <T>(id: string, search: string) => Promise<T> | T;
+export type GetLoaderData = <TData, TParams = any>(
+  id: string,
+  params?: TParams
+) => Promise<TData> | TData;
 
 type LoadersContext = {
   getData: GetLoaderData;
-  search: string;
 };
 
 export const context = createContext<LoadersContext | null>(null);
 
-export const LoaderProvider: FC<LoadersContext> = ({
-  children,
-  getData,
-  search,
-}) => {
+export const LoaderProvider: FC<LoadersContext> = ({ children, getData }) => {
   const value = {
     getData,
-    search,
   };
 
   return <context.Provider value={value}>{children}</context.Provider>;

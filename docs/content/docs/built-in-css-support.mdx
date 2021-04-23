@@ -1,0 +1,63 @@
+---
+title: Built-In CSS Support
+imports:
+  data: ./built-in-css-support.json
+  cssModule: ./examples/css-module.example.css
+  cssModuleUsage: ./examples/css-module-usage.example.tsx
+  globalCssApp: ./examples/global-css-app.example.tsx
+  installTailwind: ./examples/install-tailwind.example.sh
+  postcssTailwind: ./examples/tailwind-postcss.config.example.js
+  tailwind: ./examples/tailwind.config.example.js
+---
+
+# Built-In CSS Support
+
+Since MWAP is built around [Webpack](https://webpack.js.org) we include a few commonly used patterns out of the box such as CSS and [CSS Module](https://github.com/css-modules/css-modules#readme) support.
+
+CSS is by default processed by [PostCSS](https://www.npmjs.com/package/postcss) with [Autoprefixer](https://www.npmjs.com/package/autoprefixer) and minimized using [esbuild](https://esbuild.github.io/).
+
+## Global CSS
+
+If you wish to provide global styles, it's best to define a `styles.css` and import it in your custom `app.tsx` component.
+
+This may look something like:
+
+<Code code={globalCssApp} />
+
+## CSS Modules
+
+Consider writing your component styles as [CSS Modules](https://github.com/css-modules/css-modules#readme), there are many benefits such as no more naming conflictions, explicit dependencies, no global scope and much more.
+
+MWAP automatically compiles css files that end in `.module.css` as CSS Modules. All you have to do is import these files into your components!
+
+`components/dot.module.css`
+
+<Code language="css" code={cssModule} />
+
+`components/dot.tsx`
+
+<Code code={cssModuleUsage} />
+
+## Custom Postcss config
+
+To provide your own PostCSS config, create a `postcss.config.js` file if the root of your project.
+
+### Tailwindcss
+
+Setting up tailwindcss is as easy as:
+
+<Code language="git" code={installTailwind} />
+
+`postcss.config.js`
+
+<Code language="js" code={postcssTailwind} />
+
+`tailwind.config.js`
+
+<Code language="js" code={tailwind} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

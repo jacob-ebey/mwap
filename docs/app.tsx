@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 
 import { Head } from "@mwap/head";
+import { ScrollToTop } from "@mwap/router";
 
 import Header from "./components/header";
 import Meta from "./components/meta";
@@ -10,7 +11,8 @@ import "./styles/global.css";
 
 const App = ({ children }) => {
   return (
-    <Fragment>
+    <>
+      <ScrollToTop />
       <Head
         htmlAttributes={{ lang: "en" }}
         defaultTitle="@mwap docs"
@@ -27,7 +29,7 @@ const App = ({ children }) => {
       <Header />
 
       <Suspense fallback={""}>{children}</Suspense>
-    </Fragment>
+    </>
   );
 };
 

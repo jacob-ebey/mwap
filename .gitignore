@@ -2,6 +2,7 @@
 .mwap
 build
 dist
+static
 
 # Logs
 *.log

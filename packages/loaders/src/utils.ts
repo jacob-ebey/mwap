@@ -1,3 +1,5 @@
-export const getLoaderCacheId = (id: string, search: string) => {
-  return `{ "id": ${JSON.stringify(id)}, "search": ${JSON.stringify(search)} }`;
+import stringify from "json-stringify-deterministic";
+
+export const getLoaderCacheId = (id: string, params: any) => {
+  return `{ "id": ${JSON.stringify(id)}, "params": ${stringify(params)} }`;
 };

@@ -19,26 +19,33 @@ type Loaders = {
   };
 };
 
-// @ts-ignore
-const loadersModule = require("mwap-loaders");
-const loaders: Loaders =
-  (loadersModule && loadersModule.default) || loadersModule || {};
+export type LoadersContext = {
+  getData: GetLoaderData;
+  loaderCache: Map<string, LoaderCacheValue<unknown>>;
+};
 
-export const createLoaderContext = () => {
+export const createLoaderContext = (): LoadersContext => {
   const loaderCache = new Map<string, LoaderCacheValue<unknown>>();
 
-  const loadData = async <TData>(
+  const loadData = async <TData, TParams>(
     cacheId: string,
     id: string,
-    search: string
+    params: TParams
   ): Promise<TData> => {
+    // @ts-ignore
+    const loadersModule = require("mwap-loaders");
+    const loaders: Loaders =
+      (loadersModule && loadersModule.default) || loadersModule || {};
+
     const loaderModule = loaders[id];
 
     if (!loaderModule) {
       throw new Error(`Loader ${JSON.stringify(id)} does not exist.`);
     }
 
-    const loaderPromise = Promise.resolve(loaderModule.loader({ search }))
+    const loader: Loader<TData, TParams> = loaderModule.loader;
+
+    const loaderPromise = Promise.resolve(loader({ params }))
       .then((preRenderData) => {
         loaderCache.set(cacheId, { preRenderData });
         return preRenderData;
@@ -53,8 +60,11 @@ export const createLoaderContext = () => {
     return loaderPromise;
   };
 
-  const getData: GetLoaderData = <TData>(id: string, search: string) => {
-    const cacheId = getLoaderCacheId(id, search);
+  const getData: GetLoaderData = <TData, TParams>(
+    id: string,
+    params: TParams
+  ) => {
+    const cacheId = getLoaderCacheId(id, params || {});
 
     const cached = loaderCache.get(cacheId) as LoaderCacheValue<TData>;
     if (cached) {
@@ -67,7 +77,7 @@ export const createLoaderContext = () => {
       }
     }
 
-    return loadData<TData>(cacheId, id, search);
+    return loadData<TData, TParams>(cacheId, id, params || ({} as TParams));
   };
 
   return { getData, loaderCache };

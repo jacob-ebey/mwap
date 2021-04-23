@@ -7,7 +7,7 @@ const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div className={cn("max-w-2xl mx-auto px-6 mb-16", className)} {...props} />
+    <div className={cn("max-w-2xl mx-auto px-6 my-16", className)} {...props} />
   );
 };
 

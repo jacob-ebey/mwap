@@ -1,9 +1,9 @@
 const loaderUtils = require("loader-utils");
 const { snakeCase } = require("snake-case");
 
-function pwrcAsyncLoader() {}
+function mwapAsyncLoader() {}
 
-pwrcAsyncLoader.pitch = function pitch(request) {
+mwapAsyncLoader.pitch = function pitch(request) {
   const componentRequest = loaderUtils.stringifyRequest(this, `!!${request}`);
   const split = request.split("!");
   const baseRequest = split[split.length - 1];
@@ -29,4 +29,4 @@ export default function AsyncComponent(props) {
   `;
 };
 
-module.exports = pwrcAsyncLoader;
+module.exports = mwapAsyncLoader;

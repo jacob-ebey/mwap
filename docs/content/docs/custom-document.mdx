@@ -1,0 +1,25 @@
+---
+title: Custom Document
+imports:
+  data: ./custom-document.json
+  customDocument: ./examples/custom-document.example.tsx
+---
+
+# Custom Document
+
+MWAP uses the `Document` component when creating the final SSR HTML response. You can override it by creating either a `document.tsx`, `document.ts`, `document.js`, or `document.jsx`.
+
+Overriding the Document allows you to do things like:
+
+- Add meta to the document
+- Add global styles / scripts
+
+A custom `document.tsx` might look something like:
+
+<Code language="tsx" code={customDocument} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

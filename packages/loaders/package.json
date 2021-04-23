@@ -15,6 +15,9 @@
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch --jsx React.createElement"
   },
+  "dependencies": {
+    "json-stringify-deterministic": "1.0.1"
+  },
   "peerDependencies": {
     "react": "*"
   },

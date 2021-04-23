@@ -5,6 +5,7 @@ const WebpackBar = require("webpackbar");
 const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getSassConfiguration = require("../utils/get-sass-options");
+const getWebpackCacheConfigFiles = require("../utils/get-webpack-cache-config-files");
 const getBaseConfig = require("./get-base-config");
 const resolveEntry = require("../utils/resolve-entry");
 const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
@@ -14,6 +15,8 @@ const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader")
  * @returns {Promise<import("webpack").Configuration>}
  */
 async function getServerConfig(args) {
+  const isProd = args.mode !== "development";
+
   const [
     userNodeModules,
     config,
@@ -77,7 +80,7 @@ async function getServerConfig(args) {
 
   config.module.rules.push({
     test: /\.(p?css|s[ac]ss)$/,
-    exclude: /\.module\.(p?css|s[ac]ss)$/,
+    exclude: [/\.module\.(p?css|s[ac]ss)$/],
     loader: "null-loader",
   });
 
@@ -88,6 +91,17 @@ async function getServerConfig(args) {
       reporters: ["fancy"],
     })
   );
+
+  if (isProd) {
+    const configFiles = await getWebpackCacheConfigFiles(args.cwd);
+    config.cache = {
+      name: "server",
+      type: "filesystem",
+      buildDependencies: {
+        config: ["@mwap/cli/lib/webpack/get-server-config.js", ...configFiles],
+      },
+    };
+  }
 
   await applyUserConfig(Object.assign({}, args, { isServer: true }), config);
 

@@ -1,3 +1,5 @@
+import stringify from "json-stringify-deterministic";
+
 import { getLoaderCacheId } from "@mwap/loaders";
 import type { GetLoaderData } from "@mwap/loaders";
 
@@ -17,14 +19,14 @@ const loadersCache = new Map<string, LoaderCacheValue<unknown>>(
 );
 (window as any).loadersCache = loadersCache;
 
-const loadData = <TData>(
+const loadData = <TData, TParams>(
   cacheId: string,
   id: string,
-  search: string
+  params: TParams
 ): Promise<TData> => {
   // TODO: Make loaders api path configurable
   const loaderPromsie = fetch(
-    `/.mwap/loaders?loader=${encodeURI(id)}&search=${encodeURI(search)}`
+    `/.mwap/loader/${id}/${btoa(stringify(params))}.json`
   )
     .then((res) => {
       if (!res.ok) {
@@ -47,8 +49,11 @@ const loadData = <TData>(
   return loaderPromsie;
 };
 
-export const getData: GetLoaderData = <TData>(id: string, search: string) => {
-  const cacheId = getLoaderCacheId(id, search);
+export const getData: GetLoaderData = <TData, TParams>(
+  id: string,
+  params: TParams
+) => {
+  const cacheId = getLoaderCacheId(id, params || {});
 
   const cached = loadersCache.get(cacheId) as LoaderCacheValue<TData>;
   if (cached) {
@@ -61,5 +66,5 @@ export const getData: GetLoaderData = <TData>(id: string, search: string) => {
     }
   }
 
-  return loadData(cacheId, id, search);
+  return loadData(cacheId, id, params || {});
 };

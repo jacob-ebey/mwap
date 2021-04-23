@@ -1,0 +1,5 @@
+"scripts": {
+  "build": "mwap build",
+  "dev": "mwap dev",
+  "start": "mwap start"
+}

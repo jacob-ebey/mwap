@@ -60,6 +60,7 @@ async function build({ _, ...args }) {
       }
     })
     .catch((stats) => {
+      // TODO: Investigate why I put this here and if it should actually be handled.
       if (typeof stats.constructor === "function") {
         console.log(stats);
       }

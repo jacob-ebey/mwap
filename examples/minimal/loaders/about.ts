@@ -5,12 +5,15 @@ export type AboutPageData = {
   ttl: number;
 };
 
-const loader: Loader<AboutPageData> = ({ search }) => {
-  const url = new URL(`https://mock.com/${search}`);
-  const message = url.searchParams.get("message");
+export type AboutPageParams = {
+  message?: string;
+};
+
+const loader: Loader<AboutPageData, AboutPageParams> = ({ params }) => {
+  const message = params.message || "Chickens are funny animals";
 
   return {
-    message: message || "Chickens are funny animals",
+    message,
     ttl: 20,
   };
 };

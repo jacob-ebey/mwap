@@ -59,12 +59,14 @@ async function dev(args) {
       return;
     }
 
-    clearRequireCache();
-
     const serverPath = path.resolve(args.cwd, args.dist, "server/main.js");
     const serverBuild = require(serverPath);
 
     Promise.resolve(serverBuild.createApp(express, args))
+      .then((app) => {
+        clearRequireCache();
+        return app;
+      })
       .then((app) => app(...params))
       .catch((err) => {
         params[1].status(500);

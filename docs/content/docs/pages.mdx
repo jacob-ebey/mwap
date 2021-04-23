@@ -1,0 +1,25 @@
+---
+title: Pages
+imports:
+  data: ./pages.json
+  pageTypes: ./examples/page-types.example.ts
+  pageExampleWithAbout: ./examples/pages-with-about.example.ts
+---
+
+# Pages
+
+In MWAP a page is represented by an array of page definitions exported from `pages/index.ts`, `pages/index.tsx`, `pages/index.js` or `pages/index.jsx`.
+
+Pages are defined as a React Component and a few simple properties:
+
+<Code language="ts" code={pageTypes} />
+
+Any other component defined in the `pages` directory will be automatically code-split via `@mwap/async`. This means you can use standard import statements in your `pages/index.xx` file leaving it looking like:
+
+<Code language="ts" code={pageExampleWithAbout} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

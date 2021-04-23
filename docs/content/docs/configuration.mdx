@@ -1,0 +1,22 @@
+---
+title: MWAP Configuration
+imports:
+  data: ./configuration.json
+  configuration: ./examples/configuration.example.js
+---
+
+# MWAP Configuration
+
+MWAP allows you to easily tap into the webpack configuration through the `mwap.config.js` file in the root of your project.
+
+Providing access to the webpack config gives you almost unlimited possibilities in the type of content you can import into your applications.
+
+A custom `mwap.config.js` might look something like:
+
+<Code language="tsx" code={configuration} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

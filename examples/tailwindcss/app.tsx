@@ -1,13 +1,16 @@
 import * as React from "react";
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 
 import { Head } from "@mwap/head";
+import { ScrollToTop } from "@mwap/router";
 
 import "./styles/global.css";
 
 const App = ({ children }) => {
   return (
-    <Fragment>
+    <>
+      <ScrollToTop />
+
       <Head
         htmlAttributes={{ lang: "en" }}
         defaultTitle="@mwap tailwindcss example"
@@ -41,7 +44,7 @@ const App = ({ children }) => {
       </Head>
 
       <Suspense fallback={""}>{children}</Suspense>
-    </Fragment>
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ import { StaticRouter } from "@mwap/router";
 
 import type { ClientBuildStats } from "./document";
 import { DocumentProvider } from "./document";
-import { createLoaderContext } from "./loaders";
+import { LoadersContext } from "./loaders";
 
 // @ts-ignore
 const mwapDocumentModule = require("mwap-document");
@@ -21,12 +21,11 @@ const Document: ComponentType =
 
 export type RenderOptions = {
   location: string;
-  search: string;
+  loaderContext: LoadersContext;
   stats: ClientBuildStats;
 };
 
-export const render = async ({ location, search, stats }: RenderOptions) => {
-  const loaderContext = createLoaderContext();
+export const render = async ({ location, loaderContext, stats }: RenderOptions) => {
   const chunks = new Set<string>();
   const head = {} as FilledContext;
 
@@ -35,7 +34,7 @@ export const render = async ({ location, search, stats }: RenderOptions) => {
       <AsyncProvider chunks={chunks}>
         <HeadProvider context={head}>
           <StaticRouter location={location}>
-            <LoaderProvider getData={loaderContext.getData} search={search}>
+            <LoaderProvider getData={loaderContext.getData}>
               <AppShell />
             </LoaderProvider>
           </StaticRouter>

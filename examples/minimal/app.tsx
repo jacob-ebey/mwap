@@ -1,13 +1,21 @@
 import * as React from "react";
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 
 import { Head } from "@mwap/head";
+import { useLoader } from "@mwap/loaders";
+import { ScrollToTop } from "@mwap/router";
 
 import Header from "./components/header";
 
+import type { AppShellProps } from "./loaders/app-shell";
+
 const App = ({ children }) => {
+  const { title } = useLoader<AppShellProps, {}>("app-shell", {});
+
   return (
-    <Fragment>
+    <>
+      <ScrollToTop />
+
       <Head
         htmlAttributes={{ lang: "en" }}
         defaultTitle="@mwap minimal example"
@@ -42,9 +50,9 @@ const App = ({ children }) => {
       </Head>
 
       <Header />
-
+      <h1>{title}</h1>
       <Suspense fallback={""}>{children}</Suspense>
-    </Fragment>
+    </>
   );
 };
 

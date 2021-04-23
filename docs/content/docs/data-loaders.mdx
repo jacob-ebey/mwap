@@ -1,0 +1,57 @@
+---
+title: Data Loaders
+imports:
+  data: ./data-loaders.json
+  homeLoader: ./examples/home-loader.example.ts
+  homePageWithLoader: ./examples/home-page-with-loader.example.tsx
+  simpleLoadersIndex: ./examples/simple-loaders-index.example.ts
+  todoPage: ./examples/todo-page.example.tsx
+  todoPageLoader: ./examples/todo-page-loader.example.ts
+  todoPages: ./examples/todo-pages.example.ts
+---
+
+# Data Loaders
+
+MWAP introduces the concept of Data Loaders to help you reason about your data and access it from any level of your component tree.
+
+> Even though you could `userLoader` in any component, we recommend reserving it for components defined in your pages directory and keeping them 1:1.
+
+Data Loaders are defined as an object with a `loader` property.
+
+`loaders/home.ts`:
+
+<Code language="ts" code={homeLoader} />
+
+They are then exported from `loaders/index.ts`, `loaders/index.tsx`, `loaders/index.js` or `loaders/index.jsx` via the name you wish to reference them as in `useLoader`.
+
+`loaders/index.ts`:
+
+<Code language="ts" code={simpleLoadersIndex} />
+
+Now we can consume the result of the loader via the `userLoader` hook.
+
+`pages/home.ts`:
+
+<Code language="tsx" code={homePageWithLoader} />
+
+## Passing Params
+
+Parameters as passed to the loader through the `useLoader` hook. These are of course optional, but are useful for contextual loading such as a slug in the Path.
+
+`loaders/todo.ts`:
+
+<Code language="tsx" code={todoPageLoader} />
+
+`pages/todo.tsx`:
+
+<Code language="tsx" code={todoPage} />
+
+`pages/index.ts`:
+
+<Code language="tsx" code={todoPages} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

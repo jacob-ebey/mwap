@@ -420,6 +420,10 @@
       "projectFolder": "packages/loaders"
     },
     {
+      "packageName": "@mwap/mdx-remote",
+      "projectFolder": "packages/mdx-remote"
+    },
+    {
       "packageName": "@mwap/router",
       "projectFolder": "packages/router"
     },

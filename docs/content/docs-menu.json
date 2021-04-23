@@ -1,0 +1,30 @@
+[
+  {
+    "to": "/docs",
+    "label": "Getting Started"
+  },
+  {
+    "to": "/docs/pages",
+    "label": "Pages"
+  },
+  {
+    "to": "/docs/built-in-css-support",
+    "label": "CSS Support"
+  },
+  {
+    "to": "/docs/data-loaders",
+    "label": "Data Loaders"
+  },
+  {
+    "to": "/docs/custom-app",
+    "label": "Custom App"
+  },
+  {
+    "to": "/docs/custom-document",
+    "label": "Custom Document"
+  },
+  {
+    "to": "/docs/configuration",
+    "label": "MWAP Configuration"
+  }
+]

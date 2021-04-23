@@ -8,6 +8,7 @@ const WebpackBar = require("webpackbar");
 const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getSassConfiguration = require("../utils/get-sass-options");
+const getWebpackCacheConfigFiles = require("../utils/get-webpack-cache-config-files");
 const resolveEntry = require("../utils/resolve-entry");
 const resolvePostCssConfig = require("../utils/resolve-postcss-config");
 const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
@@ -86,7 +87,7 @@ async function getClientConfig(args) {
 
   config.module.rules.push({
     test: /\.(p?css|s[ac]ss)$/,
-    exclude: /\.module\.(p?css|s[ac]ss)$/,
+    exclude: [/\.module\.(p?css|s[ac]ss)$/],
     use: [
       MiniCssExtractPlugin.loader,
       {
@@ -109,8 +110,8 @@ async function getClientConfig(args) {
   });
 
   if (isProd) {
-    config.output.filename = "[contenthash].js";
-    config.output.chunkFilename = "[contenthash].js";
+    config.output.filename = "[name].[contenthash].js";
+    config.output.chunkFilename = "[id].[contenthash].js";
   }
 
   config.plugins.push(
@@ -137,14 +138,12 @@ async function getClientConfig(args) {
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
     config.plugins.push(
       new ReactRefreshWebpackPlugin({
-        overlay: {
-          sockIntegration: "whm",
-        },
+        overlay: false,
       })
     );
     config.module.rules.push({
       test: /\.[jt]sx?$/,
-      exclude: /node_modules/,
+      exclude: [/node_modules/],
       use: [
         {
           loader: require.resolve("babel-loader"),
@@ -170,6 +169,17 @@ async function getClientConfig(args) {
         verbose: !!args.verbose,
       })
     );
+  }
+
+  if (isProd) {
+    const configFiles = await getWebpackCacheConfigFiles(args.cwd);
+    config.cache = {
+      name: "client",
+      type: "filesystem",
+      buildDependencies: {
+        config: ["@mwap/cli/lib/webpack/get-client-config.js", ...configFiles],
+      },
+    };
   }
 
   await applyUserConfig(Object.assign({}, args, { isServer: false }), config);

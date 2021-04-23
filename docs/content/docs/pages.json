@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "name": "related-list",
+      "props": {
+        "links": [
+          {
+            "to": "/docs/built-in-css-support",
+            "label": "CSS Support"
+          },
+          {
+            "to": "/docs/data-fetching",
+            "label": "Data Fetching"
+          },
+          {
+            "to": "/docs/custom-app",
+            "label": "Custom App"
+          }
+        ]
+      }
+    }
+  ]
+}

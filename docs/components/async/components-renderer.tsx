@@ -1,9 +1,11 @@
 import * as React from "react";
 
-import Hero from "./async/hero";
+import Hero from "./hero";
+import RelatedList from "./related-list";
 
 const componentMap = {
   hero: Hero,
+  "related-list": RelatedList,
 };
 
 type ComponentProps = {

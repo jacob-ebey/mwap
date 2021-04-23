@@ -18,7 +18,8 @@
     "@mwap/app": "1.0.0",
     "@mwap/head": "1.0.0",
     "@mwap/loaders": "1.0.0",
-    "@mwap/router": "1.0.0"
+    "@mwap/router": "1.0.0",
+    "json-stringify-deterministic": "1.0.1"
   },
   "peerDependencies": {
     "react": "*",

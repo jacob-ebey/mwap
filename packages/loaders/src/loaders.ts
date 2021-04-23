@@ -14,12 +14,12 @@ export type LoaderConfigFunc<
   TConfig extends LoaderConfig = LoaderConfig
 > = (context: LoaderConfigContext<TData>) => TConfig;
 
-export type LoaderContext = {
-  search: string;
+export type LoaderContext<TParams> = {
+  params: TParams
 };
 
-export type Loader<TData = any> = (
-  context: LoaderContext
+export type Loader<TData = any, TParams = any> = (
+  context: LoaderContext<TParams>
 ) => TData | Promise<TData>;
 
 export { useLoader } from "./hooks";

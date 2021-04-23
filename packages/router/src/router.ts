@@ -10,3 +10,5 @@ export {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
+
+export { ScrollToTop } from "./scroll-to-top";

@@ -1,17 +1,32 @@
+const path = require("path");
+
+const getJsTsRules = require("@mwap/cli/lib/utils/get-jsts-rules");
+const getStyleRules = require("@mwap/cli/lib/utils/get-style-rules");
+
 module.exports = {
-  webpack(config) {
+  webpack(config, args) {
+    // Use preact in production for smaller bundles
+    if (!args.isServer && args.mode === "production") {
+      config.resolve.alias = config.resolve.alias || {};
+      config.resolve.alias.react = "preact/compat";
+      config.resolve.alias["react-dom"] = "preact/compat";
+    }
+
+    const excludeContentDir = (rule) => {
+      rule.exclude = rule.exclude || [];
+      rule.exclude.push(path.resolve(args.cwd, "content"));
+    };
+    // Exclude content directory from base JS/TS and CSS loader rules
+    getJsTsRules(config).forEach(excludeContentDir);
+    getStyleRules(config).forEach(excludeContentDir);
+
+    // Load mdx, js, ts, css, txt and sh files in the content dir as text
     config.module.rules.push({
-      test: /\.md$/,
+      test: [/\.mdx?$/, /\.[tj]sx?$/, /\.css$/, /\.txt$/, /\.sh$/],
+      include: path.resolve(args.cwd, "content"),
       use: [
         {
-          loader: require.resolve("esbuild-loader"),
-          options: {
-            loader: "jsx",
-            target: "es2015",
-          },
-        },
-        {
-          loader: "markdown-component-loader",
+          loader: "raw-loader",
         },
       ],
     });

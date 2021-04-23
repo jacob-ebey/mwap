@@ -22,7 +22,7 @@ declare global {
 
 type DefaultModule<T> = { default: T };
 
-type DynamicComponent<TProps> = FC<TProps>;
+type DynamicComponent<TProps> = FC<TProps> & { load: () => Promise<void> };
 
 type InferedModuleProps<TModule> = TModule extends DefaultModule<
   ComponentType<infer TProps>
@@ -46,11 +46,7 @@ export const dynamic = <
   options?: DynamicOptions
 ): DynamicComponent<InferedModuleProps<TModule>> => {
   let promise: Promise<void>;
-  let Component: ComponentType<InferedModuleProps<TModule>> =
-    (options?.__chunkId &&
-      typeof window !== "undefined" &&
-      window.__DYNAMIC_COMPONENTS__?.[options.__chunkId]) ||
-    undefined;
+  let Component: ComponentType<InferedModuleProps<TModule>>;
 
   const doLoad = () => {
     if (!promise) {
@@ -72,12 +68,15 @@ export const dynamic = <
       window.__ASYNC_PRELOAD__[options.__chunkId] || doLoad;
   }
 
-  const dynamicComponent: DynamicComponent<InferedModuleProps<TModule>> = (
-    props
-  ) => {
+  const dynamicComponent: FC<InferedModuleProps<TModule>> = (props) => {
     const asyncContext = useContext(context);
     if (asyncContext && options?.__chunkId) {
       asyncContext.chunks.add(options.__chunkId);
+    }
+
+    if (options?.__chunkId && typeof window !== "undefined") {
+      window.__DYNAMIC_COMPONENTS__ = window.__DYNAMIC_COMPONENTS__ || {};
+      Component = Component || window.__DYNAMIC_COMPONENTS__[options.__chunkId];
     }
 
     if (Component) {
@@ -89,5 +88,10 @@ export const dynamic = <
     throw promise;
   };
 
-  return dynamicComponent;
+  const withLoad: DynamicComponent<
+    InferedModuleProps<TModule>
+  > = dynamicComponent as any;
+  withLoad.load = doLoad;
+
+  return withLoad;
 };

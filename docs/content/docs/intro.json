@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "name": "related-list",
+      "props": {
+        "links": [
+          {
+            "to": "/docs/pages",
+            "label": "Pages"
+          },
+          {
+            "to": "/docs/built-in-css-support",
+            "label": "CSS Support"
+          },
+          {
+            "to": "/docs/data-fetching",
+            "label": "Data Fetching"
+          },
+          {
+            "to": "/docs/configuration",
+            "label": "Custom Configuration"
+          }
+        ]
+      }
+    }
+  ]
+}

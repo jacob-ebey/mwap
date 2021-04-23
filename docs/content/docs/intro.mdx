@@ -1,0 +1,71 @@
+---
+title: Getting Started
+imports:
+  data: ./intro.json
+  createAppExample: ./examples/create-app.example.sh
+  homePageExample: ./examples/home-page.example.tsx
+  installMwapExample: ./examples/install-mwap.example.sh
+  installReactExample: ./examples/install-react.example.sh
+  pagesExample: ./examples/pages.example.ts
+  scriptsExample: ./examples/scripts.example.txt
+---
+
+# Getting Started
+
+Welcome to the Micro Web App Platform documentation!
+
+## Quick Start
+
+We recommend creating a new MWAP app by using [create-mwap-app](https://www.npmjs.com/package/create-mwap-app) and choosing from one of the official boilerplates:
+
+<Code language="git" code={createAppExample} />
+
+- **minimal** - [source](https://github.com/jacob-ebey/mwap/tree/main/examples/minimal)
+- **tailwindcss** - [source](https://github.com/jacob-ebey/mwap/tree/main/examples/tailwindcss)
+
+After the installation is complete, follow the instructions to start the development server. Try editing pages/home.tsx and see the result on your browser.
+
+For more information on how to use create-mwap-app, you can review the [create-mwap-app](https://github.com/jacob-ebey/mwap/tree/main/packages/create-mwap-app) docs.
+
+## Manual Setup
+
+Install `react` and `react-dom` in your project:
+
+<Code language="git" code={installReactExample} />
+
+Install the MWAP platform in your project:
+
+<Code language="git" code={installMwapExample} />
+
+Open `package.json` and add the following scripts:
+
+<Code language="json" code={scriptsExample} />
+
+- `dev` - Runs mwap dev which starts your app in development mode
+- `build` - Runs mwap build which builds the application for production usage
+- `start` - Runs mwap start which starts your bundled app in production mode
+
+Next we will introduce a page to our application by creating a `pages/home.tsx` file that exports a simple React component:
+
+<Code language="tsx" code={homePageExample} />
+
+Now we will expose the Home component by creating a `pages/index.ts` file and assigning our home component to a page:
+
+<Code language="tsx" code={pagesExample} />
+
+Don't worry about code-splitting, anything that lives under `pages/*` or `components/**/async/*` are automatically code split and pre-loaded.
+
+To start a development server run `npm run dev` or `yarn dev`. Visit [http://localhost:5000](http://localhost:5000) to view your application.
+
+So far, we get:
+
+- Automatic compilation and bundling (with webpack and esbuild)
+- React Fast Refresh
+- Server-side rendering of `./pages/index`
+- Static file serving. `./public/` is mapped to `/`
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

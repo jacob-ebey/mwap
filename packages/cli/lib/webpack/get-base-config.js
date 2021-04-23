@@ -91,11 +91,14 @@ async function getBaseConfig({ cwd, mode }) {
     module: {
       rules: [
         {
+          test: /\/async\/.*\.[tj]sx?$/,
+          include: [path.resolve(cwd, "components")],
+          exclude: [/node_modules/, mwapPages],
+          loader: require.resolve("@mwap/async/webpack-loader"),
+        },
+        {
           test: /\.[tj]sx?$/,
-          include: [
-            path.resolve(cwd, "components/async"),
-            path.resolve(cwd, "pages"),
-          ],
+          include: [path.resolve(cwd, "pages")],
           exclude: [/node_modules/, mwapPages],
           loader: require.resolve("@mwap/async/webpack-loader"),
         },

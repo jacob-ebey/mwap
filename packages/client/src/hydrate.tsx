@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import type { ComponentType } from "react";
 import { hydrate as reactHydrate } from "react-dom";
 
 import { AppShell } from "@mwap/app";
 import { HeadProvider } from "@mwap/head";
 import { LoaderProvider } from "@mwap/loaders";
-import { BrowserRouter, useLocation } from "@mwap/router";
+import { BrowserRouter, useLocation, useParams } from "@mwap/router";
 
 import { getData } from "./loaders";
 
@@ -28,10 +28,8 @@ declare global {
 }
 
 const AppWithLoaders = () => {
-  const location = useLocation();
-
   return (
-    <LoaderProvider getData={getData} search={location.search}>
+    <LoaderProvider getData={getData}>
       <AppShell />
     </LoaderProvider>
   );
@@ -45,9 +43,27 @@ export const hydrate = async () => {
     ? JSON.parse(decodeURI(asyncChunksElement.innerHTML))
     : [];
 
-  await Promise.all(
-    asyncChunks.map((chunk) => window.__ASYNC_PRELOAD__?.[chunk]?.())
-  ).catch((err) => console.error("Error resolving async chunks", err));
+  let shouldPreload = new Set<string>(asyncChunks);
+  let canPreload = Object.keys(window.__ASYNC_PRELOAD__ || {});
+  while (
+    shouldPreload.size > 0 &&
+    canPreload.some((can) => shouldPreload.has(can))
+  ) {
+    await Promise.all(
+      asyncChunks.map((chunk) => {
+        if (window.__ASYNC_PRELOAD__?.[chunk]) {
+          shouldPreload.delete(chunk);
+          const load = window.__ASYNC_PRELOAD__[chunk];
+          delete window.__ASYNC_PRELOAD__[chunk];
+          return load().catch((err) =>
+            console.error("Error loading chunk", chunk, err)
+          );
+        }
+      })
+    );
+
+    canPreload = Object.keys(window.__ASYNC_PRELOAD__ || {});
+  }
 
   const element = document.getElementById("__mwap__");
 

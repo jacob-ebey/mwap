@@ -1,31 +1,46 @@
+import * as fs from "fs";
+import * as fsExtra from "fs-extra";
 import * as path from "path";
 
+import { urlencoded } from "body-parser";
 import Router from "express-promise-router";
+import stringify from "json-stringify-deterministic";
 
 import { matchPath } from "@mwap/router";
 import { createLoaderContext, render } from "@mwap/server";
 
 import type { StartArgs } from "@mwap/types";
 
-declare function __non_webpack_require__(id: string): any;
+global.Buffer = global.Buffer || require("buffer").Buffer;
 
-// @ts-ignore
-const mwapPagesModule = require("mwap-pages");
-const mwapPages = mwapPagesModule?.default || mwapPagesModule;
+if (typeof btoa === "undefined") {
+  global.btoa = function (str) {
+    return new Buffer(str, "binary").toString("base64");
+  };
+}
+
+if (typeof atob === "undefined") {
+  global.atob = function (b64Encoded) {
+    return new Buffer(b64Encoded, "base64").toString("binary");
+  };
+}
+
+declare function __non_webpack_require__(id: string): any;
 
 export const createApp = (express: any, args: StartArgs) => {
   const router: any = Router();
 
-  router.use("/.mwap/loaders", async (req, res) => {
-    const loaderContext = createLoaderContext();
-    const loader = Array.isArray(req.query.loader)
-      ? req.query.loader[0].toString()
-      : req.query.loader.toString();
-    const search = Array.isArray(req.query.search)
-      ? req.query.search[0].toString()
-      : req.query.search.toString();
+  router.use(urlencoded({ extended: false }));
 
-    const data = await loaderContext.getData(loader, search);
+  router.use("/.mwap/loader/:loader/:params", async (req, res) => {
+    const loaderContext = createLoaderContext();
+    const loader = req.params.loader.toString();
+    const paramsJson = atob(
+      req.params.params.toString().replace(/\.json$/, "")
+    );
+
+    const params = JSON.parse(paramsJson);
+    const data = await loaderContext.getData(loader, params);
 
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(data));
@@ -40,25 +55,56 @@ export const createApp = (express: any, args: StartArgs) => {
   const statsPath = path.resolve(args.cwd, args.dist, "server/stats.json");
 
   router.use(async (req, res, next) => {
-    const devStats = (res as any)?.locals?.webpack?.devMiddleware?.stats?.toJson();
-    const stats = devStats || __non_webpack_require__(statsPath);
+    // @ts-ignore
+    const mwapPagesModule = require("mwap-pages");
+    const mwapPages = mwapPagesModule?.default || mwapPagesModule;
 
-    const protocol = req.protocol || "http";
-    const host = req.get("host") || `localhost:${args.port}`;
-    const url = new URL(`${protocol}://${host}${req.originalUrl || req.url}`);
+    let routePath;
+    for (let i = 0; i < mwapPages.length; i++) {
+      routePath = matchPath(req.path, mwapPages[i]);
+      if (routePath) break;
+    }
 
-    const path = mwapPages.find((page) => matchPath(url.pathname, page));
-
-    if (!path) {
+    if (!routePath) {
       next();
       return;
     }
 
+    const devStats = (res as any)?.locals?.webpack?.devMiddleware?.stats?.toJson();
+    const stats = devStats || __non_webpack_require__(statsPath);
+
+    const loaderContext = createLoaderContext();
     const html = await render({
-      location: url.pathname,
-      search: url.search,
+      location: req.url,
+      loaderContext,
       stats,
     });
+
+    if ((args as any).static) {
+      const promises = [];
+      loaderContext.loaderCache.forEach((value, id) => {
+        const { id: loader, params } = JSON.parse(id);
+        const filename = path.resolve(
+          args.cwd,
+          (args as any).static,
+          ".mwap/loader",
+          loader,
+          btoa(stringify(params)) + ".json"
+        );
+
+        promises.push(
+          fsExtra
+            .ensureDir(path.dirname(filename))
+            .then(() =>
+              fs.promises.writeFile(
+                filename,
+                JSON.stringify(value.preRenderData)
+              )
+            )
+        );
+      });
+      await Promise.all(promises);
+    }
 
     res.setHeader("content-type", "text/html");
     res.send(html);
