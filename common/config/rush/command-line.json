@@ -11,6 +11,15 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "commandKind": "bulk",
+      "name": "build",
+      "safeForSimultaneousRushProcesses": false,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": false,
+      "ignoreMissingScript": false,
+      "allowWarningsInSuccessfulBuild": true
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
@@ -102,7 +111,7 @@
     //    *
     //    * Note: The default value is false. In Rush 5.7.x and earlier, the default value was true.
     //    */
-    //   "allowWarningsInSuccessfulBuild": false,
+    // "allowWarningsInSuccessfulBuild": true,
     // 
     //   /**
     //    * If true then this command will be incremental like the built-in "build" command
