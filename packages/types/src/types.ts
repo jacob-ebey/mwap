@@ -2,6 +2,7 @@ type CommonArgs = {
   cwd: string;
   dist: string;
   mode: "development" | "production";
+  progress?: boolean;
 };
 
 export type BuildArgs = CommonArgs & {

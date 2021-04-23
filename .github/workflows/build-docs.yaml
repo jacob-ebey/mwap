@@ -25,6 +25,8 @@ jobs:
 
       - name: Build Docs
         run: rush rebuild -t @mwap/docs
+        env:
+          CI: true
 
       - name: Export Docs
         run: |

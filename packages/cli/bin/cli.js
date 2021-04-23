@@ -35,7 +35,8 @@ prog
     "Inspect the client bundle for potential performance improvments?",
     false
   )
-  .option("--verbose", "Enable more verbose logging?", false)
+  .option("--verbose", "Enable more verbose logging?", !!process.env.CI)
+  .option("--progress", "Show progress bars?", !process.env.CI)
   .action(build);
 
 prog
@@ -63,7 +64,8 @@ prog
     "Inspect the client bundle for potential performance improvments?",
     false
   )
-  .option("--verbose", "Enable more verbose logging?", false)
+  .option("--verbose", "Enable more verbose logging?", !!process.env.CI)
+  .option("--progress", "Show progress bars?", !process.env.CI)
   .action(dev);
 
 prog

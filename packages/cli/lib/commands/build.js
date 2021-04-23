@@ -31,7 +31,6 @@ async function build({ _, ...args }) {
   ]);
 
   await new Promise((resolve, reject) => {
-    // TODO: Run them in parallel
     webpack([clientConfig, serverConfig], (err, stats) => {
       if (err) {
         reject(err);

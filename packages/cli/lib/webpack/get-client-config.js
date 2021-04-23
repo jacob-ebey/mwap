@@ -114,13 +114,15 @@ async function getClientConfig(args) {
     config.output.chunkFilename = "[id].[contenthash].js";
   }
 
-  config.plugins.push(
-    new WebpackBar({
-      color: "green",
-      name: "client",
-      reporters: ["fancy"],
-    })
-  );
+  if (args.progress) {
+    config.plugins.push(
+      new WebpackBar({
+        color: "green",
+        name: "client",
+        reporters: ["fancy"],
+      })
+    );
+  }
 
   config.plugins.push(
     new StatsWriterPlugin({
