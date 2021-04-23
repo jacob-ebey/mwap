@@ -14,7 +14,7 @@ imports:
 
 MWAP introduces the concept of Data Loaders to help you reason about your data and access it from any level of your component tree.
 
-> Even though you could `userLoader` in any component, we recommend reserving it for components defined in your pages directory and keeping them 1:1.
+> Even though you could `useLoader` in any component, we recommend reserving it for components defined in your pages directory and keeping them 1:1.
 
 Data Loaders are defined as an object with a `loader` property.
 
@@ -28,7 +28,7 @@ They are then exported from `loaders/index.ts`, `loaders/index.tsx`, `loaders/in
 
 <Code language="ts" code={simpleLoadersIndex} />
 
-Now we can consume the result of the loader via the `userLoader` hook.
+Now we can consume the result of the loader via the `useLoader` hook.
 
 `pages/home.ts`:
 
