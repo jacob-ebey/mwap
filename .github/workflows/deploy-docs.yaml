@@ -1,0 +1,36 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  docs-build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Rush
+        run: npm i -g @microsoft/rush
+
+      - name: Install Dependencies
+        run: rush update
+
+      - name: Build Docs
+        run: rush rebuild -t @mwap/docs
+
+      - name: Export Docs
+        run: |
+          cd docs
+          rushx export
+
+      - name: Deploy Docs 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: docs/static
