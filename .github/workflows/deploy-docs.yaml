@@ -22,7 +22,7 @@ jobs:
         run: rush update
 
       - name: Build Docs
-        run: rush rebuild -t @mwap/docs
+        run: rush rebuild --verbose
 
       - name: Export Docs
         run: |
