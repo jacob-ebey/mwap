@@ -24,7 +24,7 @@ jobs:
         run: rush update
 
       - name: Build Docs
-        run: rush rebuild -t @mwap/docs --verbose
+        run: rush build -t @mwap/docs --verbose
         env:
           CI: true
 
