@@ -84,13 +84,15 @@ async function getServerConfig(args) {
     loader: "null-loader",
   });
 
-  config.plugins.push(
-    new WebpackBar({
-      color: "green",
-      name: "server",
-      reporters: ["fancy"],
-    })
-  );
+  if (args.progress) {
+    config.plugins.push(
+      new WebpackBar({
+        color: "green",
+        name: "server",
+        reporters: ["fancy"],
+      })
+    );
+  }
 
   if (isProd) {
     const configFiles = await getWebpackCacheConfigFiles(args.cwd);

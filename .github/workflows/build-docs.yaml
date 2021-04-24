@@ -1,0 +1,34 @@
+name: Build Docs
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!main"
+
+jobs:
+  docs-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Rush
+        run: npm i -g @microsoft/rush
+
+      - name: Install Dependencies
+        run: rush update
+
+      - name: Build Docs
+        run: rush build -t @mwap/docs --verbose
+        env:
+          CI: true
+
+      - name: Export Docs
+        run: |
+          cd docs
+          rushx export

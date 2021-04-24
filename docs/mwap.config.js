@@ -1,10 +1,23 @@
 const path = require("path");
 
+const nodeExternals = require("webpack-node-externals");
+
 const getJsTsRules = require("@mwap/cli/lib/utils/get-jsts-rules");
 const getStyleRules = require("@mwap/cli/lib/utils/get-style-rules");
 
 module.exports = {
   webpack(config, args) {
+    if (args.isServer) {
+      config.externals = [
+        nodeExternals({
+          allowlist: [/@mwap\//],
+          additionalModuleDirs: [
+            path.resolve(__dirname, "../common/temp/node_modules")
+          ]
+        }),
+      ];
+    }
+
     // Use preact in production for smaller bundles
     if (!args.isServer && args.mode === "production") {
       config.resolve.alias = config.resolve.alias || {};
