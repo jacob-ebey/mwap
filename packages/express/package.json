@@ -1,6 +1,6 @@
 {
   "name": "@mwap/express",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/express.ts",
   "types": "dist/express.d.ts",

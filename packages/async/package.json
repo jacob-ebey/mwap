@@ -1,6 +1,6 @@
 {
   "name": "@mwap/async",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/async.ts",
   "types": "dist/async.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@mwap/router",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/router.ts",
   "types": "dist/router.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@mwap/head",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/head.ts",
   "types": "dist/head.d.ts",

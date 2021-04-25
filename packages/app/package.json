@@ -1,6 +1,6 @@
 {
   "name": "@mwap/app",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/app.ts",
   "types": "dist/app.d.ts",
