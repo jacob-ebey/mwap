@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "@mwap/async",
+      "comment": "initial versioning",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@mwap/async",
+  "email": "mikeechen915@gmail.com"
+}

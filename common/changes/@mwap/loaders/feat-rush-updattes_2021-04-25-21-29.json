@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "@mwap/loaders",
+      "comment": "initial versioning",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@mwap/loaders",
+  "email": "mikeechen915@gmail.com"
+}
