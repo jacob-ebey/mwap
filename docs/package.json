@@ -35,7 +35,6 @@
     "@tailwindcss/typography": "0.4.0",
     "@types/react": "17.0.3",
     "extra-watch-webpack-plugin": "1.0.3",
-    "raw-loader": "4.0.2",
     "tailwindcss": "2.1.1",
     "webpack-node-externals": "3.0.0",
 

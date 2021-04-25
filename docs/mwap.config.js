@@ -33,17 +33,6 @@ module.exports = {
     getJsTsRules(config).forEach(excludeContentDir);
     getStyleRules(config).forEach(excludeContentDir);
 
-    // Load mdx, js, ts, css, txt and sh files in the content dir as text
-    config.module.rules.push({
-      test: [/\.mdx?$/, /\.[tj]sx?$/, /\.css$/, /\.txt$/, /\.sh$/],
-      include: path.resolve(args.cwd, "content"),
-      use: [
-        {
-          loader: "raw-loader",
-        },
-      ],
-    });
-
     return config;
   },
 };
