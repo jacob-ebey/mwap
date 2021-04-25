@@ -430,11 +430,6 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@mwap/mdx-remote",
-      "projectFolder": "packages/mdx-remote",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@mwap/router",
       "projectFolder": "packages/router",
       "shouldPublish": true
