@@ -16,7 +16,7 @@
    * path segment in the "$schema" field for all your Rush config files.  This will ensure
    * correct error-underlining and tab-completion for editors such as VS Code.
    */
-  "rushVersion": "5.43.0",
+  "rushVersion": "5.45.0",
 
   /**
    * The next field selects which package manager should be installed and determines its version.
@@ -381,59 +381,73 @@
   "projects": [
     {
       "packageName": "@mwap/example-minimal",
-      "projectFolder": "examples/minimal"
+      "projectFolder": "examples/minimal",
+      "shouldPublish": false
     },
     {
       "packageName": "@mwap/example-tailwindcss",
-      "projectFolder": "examples/tailwindcss"
+      "projectFolder": "examples/tailwindcss",
+      "shouldPublish": false
     },
     {
       "packageName": "@mwap/app",
-      "projectFolder": "packages/app"
+      "projectFolder": "packages/app",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/async",
-      "projectFolder": "packages/async"
+      "projectFolder": "packages/async",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/cli",
-      "projectFolder": "packages/cli"
+      "projectFolder": "packages/cli",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/client",
-      "projectFolder": "packages/client"
+      "projectFolder": "packages/client",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/docs",
-      "projectFolder": "docs"
+      "projectFolder": "docs",
+      "shouldPublish": false
     },
     {
       "packageName": "@mwap/express",
-      "projectFolder": "packages/express"
+      "projectFolder": "packages/express",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/head",
-      "projectFolder": "packages/head"
+      "projectFolder": "packages/head",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/loaders",
-      "projectFolder": "packages/loaders"
+      "projectFolder": "packages/loaders",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/mdx-remote",
-      "projectFolder": "packages/mdx-remote"
+      "projectFolder": "packages/mdx-remote",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/router",
-      "projectFolder": "packages/router"
+      "projectFolder": "packages/router",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/server",
-      "projectFolder": "packages/server"
+      "projectFolder": "packages/server",
+      "shouldPublish": true
     },
     {
       "packageName": "@mwap/types",
-      "projectFolder": "packages/types"
+      "projectFolder": "packages/types",
+      "shouldPublish": true
     }
     // {
     //   /**

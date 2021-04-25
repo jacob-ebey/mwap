@@ -17,18 +17,15 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install Rush
-        run: npm i -g @microsoft/rush
-
       - name: Install Dependencies
-        run: rush update
+        run: node common/scripts/install-run-rush.js install --ignore-hooks
 
       - name: Build Docs
-        run: rush build -t @mwap/docs --verbose
+        run: node common/scripts/install-run-rush.js build -t @mwap/docs --verbose
         env:
           CI: true
 
       - name: Export Docs
         run: |
           cd docs
-          rushx export
+          node common/scripts/install-run-rushx.js export

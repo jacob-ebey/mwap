@@ -1,0 +1,28 @@
+name: CI Checks
+
+on:
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  ci-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Dependencies
+      - run: node common/scripts/install-run-rush.js install --ignore-hooks
+
+      - name: Ensure Version Bump
+        run: |
+          node common/scripts/install-run-rush.js change -v
+          node common/scripts/install-run-rush.js check
+
+      - name: Ensure build pass
+        run: node common/scripts/install-run-rush.js build
