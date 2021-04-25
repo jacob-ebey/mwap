@@ -19,7 +19,7 @@
     "dev": "microbundle watch --jsx React.createElement"
   },
   "dependencies": {
-    "@mwap/router": "1.0.0",
+    "@mwap/router": "workspace:*",
     "loader-utils": "2.0.0",
     "snake-case": "3.0.4"
   },

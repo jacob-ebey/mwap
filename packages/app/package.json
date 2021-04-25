@@ -15,7 +15,7 @@
     "dev": "microbundle watch --jsx React.createElement"
   },
   "dependencies": {
-    "@mwap/router": "1.0.0"
+    "@mwap/router": "workspace:*"
   },
   "peerDependencies": {
     "react": "*",

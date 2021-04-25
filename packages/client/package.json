@@ -15,10 +15,10 @@
     "dev": "microbundle watch --jsx React.createElement"
   },
   "dependencies": {
-    "@mwap/app": "1.0.0",
-    "@mwap/head": "1.0.0",
-    "@mwap/loaders": "1.0.0",
-    "@mwap/router": "1.0.0",
+    "@mwap/app": "workspace:*",
+    "@mwap/head": "workspace:*",
+    "@mwap/loaders": "workspace:*",
+    "@mwap/router": "workspace:*",
     "json-stringify-deterministic": "1.0.1"
   },
   "peerDependencies": {

@@ -47,14 +47,14 @@
     "webpackbar": "5.0.0-3"
   },
   "devDependencies": {
-    "@mwap/async": "1.0.0",
-    "@mwap/client": "1.0.0",
-    "@mwap/express": "1.0.0",
-    "@mwap/head": "1.0.0",
-    "@mwap/loaders": "1.0.0",
-    "@mwap/router": "1.0.0",
-    "@mwap/server": "1.0.0",
-    "@mwap/types": "1.0.0",
+    "@mwap/async": "workspace:*",
+    "@mwap/client": "workspace:*",
+    "@mwap/express": "workspace:*",
+    "@mwap/head": "workspace:*",
+    "@mwap/loaders": "workspace:*",
+    "@mwap/router": "workspace:*",
+    "@mwap/server": "workspace:*",
+    "@mwap/types": "workspace:*",
     "@types/react": "17.0.3",
     "react": "17.0.2"
   }
