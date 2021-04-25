@@ -26,6 +26,3 @@ jobs:
         run: |
           node common/scripts/install-run-rush.js change -v
           node common/scripts/install-run-rush.js check
-
-      - name: Ensure build pass
-        run: node common/scripts/install-run-rush.js build
