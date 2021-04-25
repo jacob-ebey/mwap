@@ -255,7 +255,7 @@
      * you might configure your system's trigger to look for a special string such as "[skip-ci]"
      * in the commit message, and then customize Rush's message to contain that string.
      */
-    // "versionBumpCommitMessage": "Applying package updates. [skip-ci]",
+     "versionBumpCommitMessage": "Applying package updates. [skip-ci]",
     /**
      * The commit message to use when committing changes during 'rush version'.
      *
@@ -263,7 +263,7 @@
      * you might configure your system's trigger to look for a special string such as "[skip-ci]"
      * in the commit message, and then customize Rush's message to contain that string.
      */
-    // "changeLogUpdateCommitMessage": "Deleting change files and updating change logs for package updates. [skip-ci]"
+     "changeLogUpdateCommitMessage": "Deleting change files and updating change logs for package updates. [skip-ci]"
   },
 
   "repository": {
@@ -282,17 +282,17 @@
      * your PR branch, and in this situation "rush change" will also automatically invoke "git fetch"
      * to retrieve the latest activity for the remote master branch.
      */
-    // "url": "https://github.com/microsoft/rush-example",
+     "url": "https://github.com/jacob-ebey/mwap",
     /**
      * The default branch name. This tells "rush change" which remote branch to compare against.
      * The default value is "master"
      */
-    // "defaultBranch": "master",
+     "defaultBranch": "master",
     /**
      * The default remote. This tells "rush change" which remote to compare against if the remote URL is
      * not set or if a remote matching the provided remote URL is not found.
      */
-    // "defaultRemote": "origin"
+     "defaultRemote": "origin"
   },
 
   /**
