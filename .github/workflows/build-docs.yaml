@@ -27,4 +27,4 @@ jobs:
       - name: Export Docs
         run: |
           cd docs
-          node common/scripts/install-run-rushx.js export
+          node ../common/scripts/install-run-rushx.js export
