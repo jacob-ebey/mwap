@@ -19,9 +19,6 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install Dependencies
-        run: node common/scripts/install-run-rush.js install --ignore-hooks
-
       - name: Ensure Version Bump
         run: |
           node common/scripts/install-run-rush.js change -v
