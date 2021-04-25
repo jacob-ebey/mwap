@@ -17,6 +17,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
+          always-auth: true
+          registry-url: https://registry.npmjs.org
+          scope: '@mwap'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Install Dependencies
         run: node common/scripts/install-run-rush.js install --ignore-hooks
