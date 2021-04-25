@@ -1,10 +1,13 @@
+import * as React from "react";
 import matter from "gray-matter";
-import renderToString from "@mwap/mdx-remote/render-to-string";
+import renderToString from "next-mdx-remote/render-to-string";
 import yaml from "js-yaml";
 
-import components from "../components/mdx-components";
-
+import { AsyncProvider } from "@mwap/async";
 import type { Loader } from "@mwap/loaders";
+import { StaticRouter } from "@mwap/router";
+
+import components from "../components/mdx-components";
 
 export type ArticleParams = {
   article?: string;
@@ -12,6 +15,7 @@ export type ArticleParams = {
 export type ArticleData = {
   articleMdxSource: any;
   title: string;
+  chunks: Array<string | number>;
 };
 
 const matterConfig = {
@@ -41,14 +45,24 @@ const loader: Loader<ArticleData, ArticleParams> = async ({ params }) => {
     {}
   );
 
+  const chunks = new Set<string | number>();
   const articleMdxSource = await renderToString(matterResult.content, {
     components,
     scope,
+    provider: {
+      component: ({ children }) => (
+        <AsyncProvider chunks={chunks}>
+          <StaticRouter location={`/docs/${article}`}>{children}</StaticRouter>
+        </AsyncProvider>
+      ),
+      props: {},
+    },
   });
 
   return {
     articleMdxSource,
     title: matterResult.data.title,
+    chunks: Array.from(chunks),
   };
 };
 
