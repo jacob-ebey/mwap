@@ -170,7 +170,7 @@
    * To remove these restrictions, you could set projectFolderMinDepth=1
    * and set projectFolderMaxDepth to a large number.
    */
-   "projectFolderMinDepth": 2,
+   "projectFolderMinDepth": 1,
    "projectFolderMaxDepth": 2,
 
   /**
