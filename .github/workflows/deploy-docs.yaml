@@ -24,7 +24,7 @@ jobs:
       - name: Export Docs
         run: |
           cd docs
-          node common/scripts/install-run-rushx.js export
+          node ../common/scripts/install-run-rushx.js export
 
       - name: Deploy Docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
