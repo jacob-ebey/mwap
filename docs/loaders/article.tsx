@@ -1,6 +1,7 @@
 import * as React from "react";
+import { Suspense } from "react";
 import matter from "gray-matter";
-import renderToString from "next-mdx-remote/render-to-string";
+import renderToString from "next-mdx-remote-suspense/render-to-string";
 import yaml from "js-yaml";
 
 import { AsyncProvider } from "@mwap/async";
@@ -52,7 +53,9 @@ const loader: Loader<ArticleData, ArticleParams> = async ({ params }) => {
     provider: {
       component: ({ children }) => (
         <AsyncProvider chunks={chunks}>
-          <StaticRouter location={`/docs/${article}`}>{children}</StaticRouter>
+          <StaticRouter location={`/docs/${article}`}>
+            <Suspense fallback={""}>{children}</Suspense>
+          </StaticRouter>
         </AsyncProvider>
       ),
       props: {},

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext } from "react";
-import mdxHydrate from "next-mdx-remote/hydrate";
+import mdxHydrate from "next-mdx-remote-suspense/hydrate";
 import { asyncContext } from "@mwap/async";
 import { useLoader } from "@mwap/loaders";
 import { useParams } from "@mwap/router";

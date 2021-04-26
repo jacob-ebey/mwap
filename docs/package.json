@@ -23,7 +23,7 @@
     "express": "4.17.1",
     "gray-matter": "4.0.2",
     "js-yaml": "4.0.0",
-    "next-mdx-remote": "2.1.4",
+    "next-mdx-remote-suspense": "0.0.1",
     "preact": "10.5.13",
     "prism-react-renderer": "1.2.0",
     "prop-types": "15.7.2",
