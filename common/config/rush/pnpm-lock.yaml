@@ -37,7 +37,7 @@ dependencies:
   loader-utils: 2.0.0
   microbundle: 0.13.0
   mini-css-extract-plugin: 1.5.0
-  next-mdx-remote-suspense: 0.0.1
+  next-mdx-remote-suspense: 0.0.2
   null-loader: 4.0.1
   postcss: 8.2.10
   postcss-loader: 5.2.0_postcss@8.2.10
@@ -4477,7 +4477,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
-  /next-mdx-remote-suspense/0.0.1:
+  /next-mdx-remote-suspense/0.0.2:
     dependencies:
       '@babel/core': 7.13.15
       '@babel/preset-env': 7.13.15_@babel+core@7.13.15
@@ -4491,8 +4491,8 @@ packages:
       react: '>=16.x <=17.x'
       react-dom: '>=16.x <=17.x'
     resolution:
-      integrity: sha512-g2dtI7BQjJBCjvxzfFtxY3yf095Qnzh21dluO8WIfL4EFIbBzZR7rX9NLTAfcvD0p10YefbUDHOXOza2WkVs1A==
-  /next-mdx-remote-suspense/0.0.1_react-dom@17.0.2+react@17.0.2:
+      integrity: sha512-IFw4rcbDn+KaJ3T06RNMg/jBXuDrMIWBkiPJ/OTO+flLfS8y7MNrECLUrvBeoI4FsmpZW7wvGh8BlYNhYD1Olw==
+  /next-mdx-remote-suspense/0.0.2_react-dom@17.0.2+react@17.0.2:
     dependencies:
       '@babel/core': 7.13.15
       '@babel/preset-env': 7.13.15_@babel+core@7.13.15
@@ -4508,7 +4508,7 @@ packages:
       react: '>=16.x <=17.x'
       react-dom: '>=16.x <=17.x'
     resolution:
-      integrity: sha512-g2dtI7BQjJBCjvxzfFtxY3yf095Qnzh21dluO8WIfL4EFIbBzZR7rX9NLTAfcvD0p10YefbUDHOXOza2WkVs1A==
+      integrity: sha512-IFw4rcbDn+KaJ3T06RNMg/jBXuDrMIWBkiPJ/OTO+flLfS8y7MNrECLUrvBeoI4FsmpZW7wvGh8BlYNhYD1Olw==
   /next-mdx-remote/2.1.4_react-dom@17.0.2+react@17.0.2:
     dependencies:
       '@babel/core': 7.13.15
@@ -7223,7 +7223,7 @@ packages:
       js-yaml: 4.0.0
       json-stringify-deterministic: 1.0.1
       next-mdx-remote: 2.1.4_react-dom@17.0.2+react@17.0.2
-      next-mdx-remote-suspense: 0.0.1_react-dom@17.0.2+react@17.0.2
+      next-mdx-remote-suspense: 0.0.2_react-dom@17.0.2+react@17.0.2
       preact: 10.5.13
       prism-react-renderer: 1.2.0_react@17.0.2
       prop-types: 15.7.2
@@ -7244,7 +7244,7 @@ packages:
       autoprefixer: '*'
       postcss: '*'
     resolution:
-      integrity: sha512-ui4MvI3LbmFAsXQgTiYmcasqzjvcBHptEYa5qklZl7OI/1nMrSlRc2vpp7/MPX2YpfLJwZOcALbwN+ylqLZ0zw==
+      integrity: sha512-uJF10MnNDCdfKcxrbCvUTVK4CLot35LtK772E7mbF9pC75/bYbaSmGy14dcSfilcd61d2hjtVqCWN8l9FChR7g==
       tarball: file:projects/docs.tgz
     version: 0.0.0
   file:projects/example-minimal.tgz:
@@ -7398,7 +7398,7 @@ specifiers:
   loader-utils: 2.0.0
   microbundle: 0.13.0
   mini-css-extract-plugin: 1.5.0
-  next-mdx-remote-suspense: 0.0.1
+  next-mdx-remote-suspense: 0.0.2
   null-loader: 4.0.1
   postcss: 8.2.10
   postcss-loader: 5.2.0
