@@ -1,6 +1,6 @@
 {
   "name": "@mwap/client",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "source": "src/client.ts",
   "types": "dist/client.d.ts",

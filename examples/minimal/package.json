@@ -1,6 +1,6 @@
 {
   "name": "@mwap/example-minimal",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -9,8 +9,8 @@
     "start": "mwap start"
   },
   "dependencies": {
-    "@mwap/client": "1.0.0",
-    "mwap": "1.0.0",
+    "@mwap/client": "0.0.0",
+    "mwap": "0.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-helmet-async": "1.0.9",
