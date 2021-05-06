@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  mwap-build:
+  build:
     runs-on: ubuntu-latest
 
     steps:
