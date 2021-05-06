@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
 import type { ComponentType } from "react";
 import { hydrate as reactHydrate } from "react-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { BrowserRouter } from "react-router-dom";
 
 import { AppShell } from "@mwap/app";
-import { HeadProvider } from "@mwap/head";
 import { LoaderProvider } from "@mwap/loaders";
-import { BrowserRouter, useLocation, useParams } from "@mwap/router";
 
 import { getData } from "./loaders";
 
@@ -69,11 +69,11 @@ export const hydrate = async () => {
 
   reactHydrate(
     <Suspense fallback={""}>
-      <HeadProvider>
+      <HelmetProvider>
         <BrowserRouter>
           <AppWithLoaders />
         </BrowserRouter>
-      </HeadProvider>
+      </HelmetProvider>
     </Suspense>,
     element
   );

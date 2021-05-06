@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Head } from "@mwap/head";
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
   const [count, setCount] = React.useState(5);
@@ -7,9 +7,9 @@ const HomePage = () => {
 
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Home</title>
-      </Head>
+      </Helmet>
       <h1>Hello, World!</h1>
       <button onClick={handleIncrement}>Count: {count}</button>
     </>

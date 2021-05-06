@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import cn from "classnames";
 
-import { Link } from "@mwap/router";
+import { Link } from "react-router-dom";
 
 type NavMenuItem = {
   label: string;

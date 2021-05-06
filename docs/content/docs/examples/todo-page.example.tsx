@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useLoader } from "@mwap/loaders";
-import { useParams } from "@mwap/router";
+import { useParams } from "react-router-dom";
+
+import { useLoader } from "mwap";
 
 import type { TodoPageData, TodoPageArgs } from "../loaders/todo";
 

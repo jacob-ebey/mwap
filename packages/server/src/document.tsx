@@ -2,7 +2,7 @@ import * as React from "react";
 import { Fragment, createContext, useContext } from "react";
 import type { FC } from "react";
 
-import type { FilledContext } from "@mwap/head";
+import type { FilledContext } from "react-helmet-async";
 
 import type { LoaderCacheValue } from "./loaders";
 

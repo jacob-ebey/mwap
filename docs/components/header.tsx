@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Link } from "@mwap/router";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <header className="flex flex-wrap max-w-2xl px-4 py-4 mx-auto mb-4">

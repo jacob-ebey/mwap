@@ -1,9 +1,8 @@
 import * as React from "react";
 import { Suspense } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { Head } from "@mwap/head";
-import { useLoader } from "@mwap/loaders";
-import { ScrollToTop } from "@mwap/router";
+import { ScrollToTop, useLoader } from "mwap";
 
 import Header from "./components/header";
 
@@ -16,7 +15,7 @@ const App = ({ children }) => {
     <>
       <ScrollToTop />
 
-      <Head
+      <Helmet
         htmlAttributes={{ lang: "en" }}
         defaultTitle="@mwap minimal example"
         titleTemplate="%s | @mwap minimal example"
@@ -47,7 +46,7 @@ const App = ({ children }) => {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-      </Head>
+      </Helmet>
 
       <Header />
       <h1>{title}</h1>

@@ -1,4 +1,4 @@
-import type { Page } from "@mwap/app";
+import type { Page } from "mwap";
 
 import Home from "./home";
 import Post from "./post";

@@ -1,25 +1,35 @@
 {
-  "name": "@mwap/cli",
+  "name": "mwap",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "echo \"I don't have a build script\""
+    "build": "microbundle --jsx React.createElement",
+    "dev": "microbundle watch --jsx React.createElement"
   },
   "bin": {
     "mwap": "./bin/cli.js"
   },
+  "files": [
+    "bin",
+    "dist",
+    "lib",
+    "runtime"
+  ],
+  "source": "src/mwap.ts",
+  "types": "dist/mwap.d.ts",
+  "main": "dist/mwap.js",
+  "module": "dist/mwap.module.js",
   "peerDependencies": {
-    "@mwap/async": "*",
-    "@mwap/client": "*",
-    "@mwap/express": "*",
-    "@mwap/head": "*",
-    "@mwap/loaders": "*",
-    "@mwap/router": "*",
-    "@mwap/server": "*",
-    "react": "*"
+    "react": "*",
+    "react-router-dom": "*"
   },
   "dependencies": {
+    "@mwap/async": "1.0.0",
+    "@mwap/client": "1.0.0",
+    "@mwap/express": "1.0.0",
+    "@mwap/loaders": "1.0.0",
+    "@mwap/server": "1.0.0",
+    "@mwap/types": "1.0.0",
     "@babel/core": "7.13.15",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "autoprefixer": "10.2.5",
@@ -33,7 +43,9 @@
     "null-loader": "4.0.1",
     "postcss": "8.2.10",
     "postcss-loader": "5.2.0",
+    "react-helmet-async": "1.0.9",
     "react-refresh": "0.10.0",
+    "react-router-dom": "5.2.0",
     "sade": "1.7.4",
     "source-map-support": "0.5.19",
     "style-loader": "2.0.0",
@@ -47,15 +59,8 @@
     "webpackbar": "5.0.0-3"
   },
   "devDependencies": {
-    "@mwap/async": "1.0.0",
-    "@mwap/client": "1.0.0",
-    "@mwap/express": "1.0.0",
-    "@mwap/head": "1.0.0",
-    "@mwap/loaders": "1.0.0",
-    "@mwap/router": "1.0.0",
-    "@mwap/server": "1.0.0",
-    "@mwap/types": "1.0.0",
     "@types/react": "17.0.3",
-    "react": "17.0.2"
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   }
 }

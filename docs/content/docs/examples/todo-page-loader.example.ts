@@ -1,5 +1,6 @@
 import { fetch } from "cross-fetch";
-import type { Loader } from "@mwap/loaders";
+
+import type { Loader } from "mwap";
 
 export type TodoPageData = {
   userId: number;

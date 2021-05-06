@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Suspense } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { ErrorBoundary } from "@mwap/app";
-import { Head } from "@mwap/head";
+import { ErrorBoundary } from "mwap";
 
 import Container from "../components/container";
 import NavMenu from "../components/nav-menu";
@@ -14,9 +14,9 @@ import Article from "./article";
 const DocsPage = () => {
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Docs</title>
-      </Head>
+      </Helmet>
 
       <div className="max-w-2xl mx-auto lg:mx-auto lg:grid lg:grid-flow-col lg:max-w-min">
         <div>

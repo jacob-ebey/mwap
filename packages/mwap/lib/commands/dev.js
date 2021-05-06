@@ -10,9 +10,9 @@ const webpackHotMiddleware = require("webpack-hot-middleware");
 const getClientConfig = require("../webpack/get-client-config");
 const getServerConfig = require("../webpack/get-server-config");
 
-function clearRequireCache() {
+function clearRequireCache(distPath) {
   Object.keys(require.cache).forEach((key) => {
-    if (!key.match(/node_modules\//)) {
+    if (key.startsWith(distPath)) {
       delete require.cache[key];
     }
   });
@@ -23,9 +23,7 @@ function clearRequireCache() {
  */
 async function dev(args) {
   process.env.NODE_ENV =
-    process.env.NODE_ENV || args.mode !== "development"
-      ? "production"
-      : "development";
+    args.mode !== "development" ? "production" : "development";
 
   const [clientConfig, serverConfig] = await Promise.all([
     getClientConfig(args),
@@ -64,7 +62,7 @@ async function dev(args) {
 
     Promise.resolve(serverBuild.createApp(express, args))
       .then((app) => {
-        clearRequireCache();
+        clearRequireCache(path.resolve(args.dist, "server"));
         return app;
       })
       .then((app) => app(...params))

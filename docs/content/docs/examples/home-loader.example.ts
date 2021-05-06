@@ -1,4 +1,4 @@
-import type { Loader } from "@mwap/loaders";
+import type { Loader } from "mwap";
 
 export type HomePageData = {
   name: string;

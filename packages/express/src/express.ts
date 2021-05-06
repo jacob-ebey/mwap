@@ -6,7 +6,8 @@ import { urlencoded } from "body-parser";
 import Router from "express-promise-router";
 import stringify from "json-stringify-deterministic";
 
-import { matchPath } from "@mwap/router";
+import { matchPath } from "react-router-dom";
+
 import { createLoaderContext, render } from "@mwap/server";
 
 import type { StartArgs } from "@mwap/types";

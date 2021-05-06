@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import * as React from "react";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { Head } from "@mwap/head";
-import { useLoader } from "@mwap/loaders";
+import { useLoader } from "mwap";
 
 import type { HomePageData } from "../loaders/home";
 
@@ -15,9 +15,9 @@ const HomePage: FC = () => {
 
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Home</title>
-      </Head>
+      </Helmet>
 
       <h1 className={styles.intro}>Hello, {name}!</h1>
       <button onClick={() => setCount(count + 1)}>Count: {count}</button>

@@ -1,4 +1,4 @@
-import type { Loader, LoaderConfigFunc } from "@mwap/loaders";
+import type { Loader } from "mwap";
 
 export type AppShellProps = {
   title: string;

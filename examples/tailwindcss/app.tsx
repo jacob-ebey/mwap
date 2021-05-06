@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Suspense } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { Head } from "@mwap/head";
-import { ScrollToTop } from "@mwap/router";
+import { ScrollToTop } from "mwap";
 
 import "./styles/global.css";
 
@@ -11,7 +11,7 @@ const App = ({ children }) => {
     <>
       <ScrollToTop />
 
-      <Head
+      <Helmet
         htmlAttributes={{ lang: "en" }}
         defaultTitle="@mwap tailwindcss example"
         titleTemplate="%s | @mwap tailwindcss example"
@@ -41,7 +41,7 @@ const App = ({ children }) => {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-      </Head>
+      </Helmet>
 
       <Suspense fallback={""}>{children}</Suspense>
     </>

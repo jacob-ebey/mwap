@@ -100,7 +100,7 @@ async function getServerConfig(args) {
       name: "server",
       type: "filesystem",
       buildDependencies: {
-        config: ["@mwap/cli/lib/webpack/get-server-config.js", ...configFiles],
+        config: ["mwap/lib/webpack/get-server-config.js", ...configFiles],
       },
     };
   }

@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-// import type { Page } from "@mwap/app";
+// import type { Page } from "mwap";
 export type Page = {
   /**
    * A React component to render only when

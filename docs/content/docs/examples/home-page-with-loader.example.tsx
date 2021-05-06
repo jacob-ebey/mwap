@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useLoader } from "@mwap/loaders";
+
+import { useLoader } from "mwap";
 
 import type { HomePageData } from "../loaders/home";
 

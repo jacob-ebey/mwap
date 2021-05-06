@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "docs",
+    "examples/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "wsrun --stages build",
+    "build:docs": "wsrun --stages build -p @mwap/docs -r",
+    "build:mwap": "wsrun --stages build -p mwap -r"
+  },
+  "devDependencies": {
+    "wsrun": "5.2.4"
+  }
+}

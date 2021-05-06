@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import * as React from "react";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { Head } from "@mwap/head";
-import { useLoader } from "@mwap/loaders";
+import { useLoader } from "mwap";
 
 import type { AboutPageData } from "../loaders/about";
 
@@ -15,9 +15,9 @@ const AboutPage: FC = () => {
 
   return (
     <>
-      <Head>
+      <Helmet>
         <title>About</title>
-      </Head>
+      </Helmet>
 
       <h1 className={styles.intro}>{message}</h1>
 

@@ -1,6 +1,5 @@
 import * as React from "react";
-
-import { Head } from "@mwap/head";
+import { Helmet } from "react-helmet-async";
 
 import ComponentRenderer from "../components/async/components-renderer";
 import Container from "../components/container";
@@ -9,9 +8,9 @@ import content from "../content/home.json";
 const HomePage = () => {
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Home</title>
-      </Head>
+      </Helmet>
 
       <Container>
         <ComponentRenderer components={content.components} />

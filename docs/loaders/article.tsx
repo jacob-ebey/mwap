@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Suspense } from "react";
+import { StaticRouter } from "react-router-dom";
 import matter from "gray-matter";
 import renderToString from "next-mdx-remote-suspense/render-to-string";
 import yaml from "js-yaml";
 
 import { AsyncProvider } from "@mwap/async";
-import type { Loader } from "@mwap/loaders";
-import { StaticRouter } from "@mwap/router";
+import type { Loader } from "mwap";
 
 import components from "../components/mdx-components";
 

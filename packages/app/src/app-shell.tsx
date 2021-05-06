@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { ComponentType, FC } from "react";
 
-import { Route, Switch } from "@mwap/router";
+import { Route, Switch } from "react-router-dom";
 
 import { ErrorBoundary } from "./error-boundary";
 import type { Page } from "./page";

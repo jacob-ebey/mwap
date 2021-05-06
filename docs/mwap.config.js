@@ -2,24 +2,26 @@ const path = require("path");
 
 const nodeExternals = require("webpack-node-externals");
 
-const getJsTsRules = require("@mwap/cli/lib/utils/get-jsts-rules");
-const getStyleRules = require("@mwap/cli/lib/utils/get-style-rules");
+const getJsTsRules = require("mwap/lib/utils/get-jsts-rules");
+const getStyleRules = require("mwap/lib/utils/get-style-rules");
 
 module.exports = {
   webpack(config, args) {
     if (args.isServer) {
       config.externals = [
         nodeExternals({
-          allowlist: [/@mwap\//],
+          allowlist: [/@mwap\//, "mwap"],
           additionalModuleDirs: [
-            path.resolve(__dirname, "../common/temp/node_modules")
-          ]
+            path.resolve(__dirname, "../node_modules"),
+            path.resolve(__dirname, "../packages"),
+          ],
         }),
       ];
     }
 
+    console.log(args.mode, process.env.NODE_ENV);
     // Use preact in production for smaller bundles
-    if (!args.isServer && args.mode === "production") {
+    if (!args.isServer && args.mode !== "development") {
       config.resolve.alias = config.resolve.alias || {};
       config.resolve.alias.react = "preact/compat";
       config.resolve.alias["react-dom"] = "preact/compat";

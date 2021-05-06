@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Suspense } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { Head } from "@mwap/head";
-import { ScrollToTop } from "@mwap/router";
+import { ScrollToTop } from "mwap";
 
 import Header from "./components/header";
 import Meta from "./components/meta";
@@ -13,7 +13,7 @@ const App = ({ children }) => {
   return (
     <>
       <ScrollToTop />
-      <Head
+      <Helmet
         htmlAttributes={{ lang: "en" }}
         defaultTitle="@mwap docs"
         titleTemplate="%s | @mwap docs"
@@ -22,7 +22,7 @@ const App = ({ children }) => {
           name="description"
           content="An example demonstrating tailwindcss within the @mwap framework."
         />
-      </Head>
+      </Helmet>
 
       <Meta />
 

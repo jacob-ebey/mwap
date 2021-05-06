@@ -1,7 +1,6 @@
 import * as React from "react";
 import type { FC } from "react";
-
-import { Link } from "@mwap/router";
+import { Link } from "react-router-dom";
 
 import styles from "./header.module.css";
 

@@ -15,23 +15,28 @@
     "dev": "microbundle watch --jsx React.createElement"
   },
   "dependencies": {
-    "@mwap/app": "1.0.0",
-    "@mwap/async": "1.0.0",
-    "@mwap/head": "1.0.0",
-    "@mwap/loaders": "1.0.0",
-    "@mwap/router": "1.0.0",
     "react-async-ssr": "0.7.2"
   },
   "peerDependencies": {
+    "@mwap/app": "*",
+    "@mwap/async": "*",
+    "@mwap/loaders": "*",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-helmet-async": "*",
+    "react-router-dom": "*"
   },
   "devDependencies": {
+    "@mwap/app": "1.0.0",
+    "@mwap/async": "1.0.0",
+    "@mwap/loaders": "1.0.0",
     "@types/node": "14.14.41",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
     "microbundle": "0.13.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-helmet-async": "1.0.9",
+    "react-router-dom": "5.2.0"
   }
 }

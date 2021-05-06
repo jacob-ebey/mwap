@@ -1,13 +1,12 @@
 import * as React from "react";
-
-import { Head } from "@mwap/head";
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Home</title>
-      </Head>
+      </Helmet>
 
       <section className="min-h-screen flex items-stretch text-white ">
         <div

@@ -3,12 +3,12 @@ import * as React from "react";
 import { Suspense } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { renderToStringAsync } from "react-async-ssr";
+import { HelmetProvider, FilledContext } from "react-helmet-async";
+import { StaticRouter } from "react-router-dom";
 
 import { AppShell } from "@mwap/app";
 import { AsyncProvider } from "@mwap/async";
-import { HeadProvider, FilledContext } from "@mwap/head";
 import { LoaderProvider } from "@mwap/loaders";
-import { StaticRouter } from "@mwap/router";
 
 import type { ClientBuildStats } from "./document";
 import { DocumentProvider } from "./document";
@@ -25,20 +25,24 @@ export type RenderOptions = {
   stats: ClientBuildStats;
 };
 
-export const render = async ({ location, loaderContext, stats }: RenderOptions) => {
+export const render = async ({
+  location,
+  loaderContext,
+  stats,
+}: RenderOptions) => {
   const chunks = new Set<string>();
   const head = {} as FilledContext;
 
   const appHtml: string = await renderToStringAsync(
     <Suspense fallback={""}>
       <AsyncProvider chunks={chunks}>
-        <HeadProvider context={head}>
+        <HelmetProvider context={head}>
           <StaticRouter location={location}>
             <LoaderProvider getData={loaderContext.getData}>
               <AppShell />
             </LoaderProvider>
           </StaticRouter>
-        </HeadProvider>
+        </HelmetProvider>
       </AsyncProvider>
     </Suspense>,
     {}

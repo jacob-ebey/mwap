@@ -1,4 +1,4 @@
-import type { Page } from "@mwap/app";
+import type { Page } from "mwap";
 
 import Docs from "./docs";
 import Home from "./home";

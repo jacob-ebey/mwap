@@ -179,7 +179,7 @@ async function getClientConfig(args) {
       name: "client",
       type: "filesystem",
       buildDependencies: {
-        config: ["@mwap/cli/lib/webpack/get-client-config.js", ...configFiles],
+        config: ["mwap/lib/webpack/get-client-config.js", ...configFiles],
       },
     };
   }

@@ -19,13 +19,13 @@
     "dev": "microbundle watch --jsx React.createElement"
   },
   "dependencies": {
-    "@mwap/router": "1.0.0",
     "loader-utils": "2.0.0",
     "snake-case": "3.0.4"
   },
   "peerDependencies": {
     "react": "*",
     "react-dom": "*",
+    "react-router-dom": "*",
     "webpack": "*"
   },
   "devDependencies": {
@@ -34,6 +34,8 @@
     "@types/react-dom": "17.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "microbundle": "0.13.0"
+    "react-router-dom": "5.2.0",
+    "microbundle": "0.13.0",
+    "webpack": "5.36.2"
   }
 }

@@ -1,7 +1,7 @@
 const path = require("path");
 
-const getJsTsRules = require("@mwap/cli/lib/utils/get-jsts-rules");
-const getStyleRules = require("@mwap/cli/lib/utils/get-style-rules");
+const getJsTsRules = require("mwap/lib/utils/get-jsts-rules");
+const getStyleRules = require("mwap/lib/utils/get-style-rules");
 
 module.exports = {
   webpack(config, args) {

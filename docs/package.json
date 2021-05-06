@@ -4,23 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "mwap build",
+    "build": "mwap build && mwap export",
     "dev": "mwap dev",
-    "export": "mwap export",
     "start": "mwap start"
   },
   "dependencies": {
     "@mwap/app": "1.0.0",
     "@mwap/async": "1.0.0",
-    "@mwap/cli": "1.0.0",
-    "@mwap/client": "1.0.0",
-    "@mwap/express": "1.0.0",
-    "@mwap/head": "1.0.0",
-    "@mwap/loaders": "1.0.0",
-    "@mwap/router": "1.0.0",
-    "@mwap/server": "1.0.0",
+    "mwap": "1.0.0",
     "classnames": "2.3.1",
-    "express": "4.17.1",
     "gray-matter": "4.0.2",
     "js-yaml": "4.0.0",
     "next-mdx-remote-suspense": "0.0.2",
@@ -29,23 +21,16 @@
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-lazy-hydration": "0.1.0"
+    "react-helmet-async": "1.0.9",
+    "react-router-dom": "5.2.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.4.0",
     "@types/react": "17.0.3",
     "extra-watch-webpack-plugin": "1.0.3",
+    "postcss": "^8.2.14",
     "raw-loader": "4.0.2",
     "tailwindcss": "2.1.1",
-    "webpack-node-externals": "3.0.0",
-
-    "body-parser": "1.19.0",
-    "express": "4.17.1",
-    "express-promise-router": "4.1.0",
-    "fs-extra": "9.1.0",
-    "json-stringify-deterministic": "1.0.1",
-    "react-async-ssr": "0.7.2",
-    "react-router-dom": "5.2.0",
-    "react-helmet-async": "1.0.9"
+    "webpack-node-externals": "3.0.0"
   }
 }

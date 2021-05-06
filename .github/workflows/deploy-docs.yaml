@@ -15,19 +15,13 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install Rush
-        run: npm i -g @microsoft/rush
-
       - name: Install Dependencies
-        run: rush update
+        run: yarn
 
       - name: Build Docs
-        run: rush build -t @mwap/docs --verbose
-
-      - name: Export Docs
-        run: |
-          cd docs
-          rushx export
+        run: yarn build:docs
+        env:
+          CI: true
 
       - name: Deploy Docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1

@@ -21,9 +21,7 @@ function printErrors(compilation) {
  */
 async function build({ _, ...args }) {
   process.env.NODE_ENV =
-    process.env.NODE_ENV || args.mode !== "development"
-      ? "production"
-      : "development";
+    args.mode !== "development" ? "production" : "development";
 
   const [clientConfig, serverConfig] = await Promise.all([
     getClientConfig(args),

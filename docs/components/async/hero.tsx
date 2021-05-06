@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Link } from "@mwap/router";
+import { Link } from "react-router-dom";
 
 type HeroLinkProps = {
   label: string;

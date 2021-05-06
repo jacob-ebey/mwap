@@ -1,13 +1,14 @@
 import * as React from "react";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import mdxHydrate from "next-mdx-remote-suspense/hydrate";
+
 import { asyncContext } from "@mwap/async";
-import { useLoader } from "@mwap/loaders";
-import { useParams } from "@mwap/router";
+import { useLoader } from "mwap";
 
 import components from "../components/mdx-components";
 import type { ArticleData, ArticleParams } from "../loaders/article";
-import { Head } from "@mwap/head";
 
 const Article = () => {
   const asyncCtx = useContext(asyncContext);
@@ -27,7 +28,7 @@ const Article = () => {
 
   return (
     <>
-      <Head>{title && <title>{title}</title>}</Head>
+      <Helmet>{title && <title>{title}</title>}</Helmet>
       <article className="prose max-w-none">{content}</article>
     </>
   );

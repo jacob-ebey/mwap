@@ -9,7 +9,10 @@ type LoaderCacheValue<TData> = {
   promise?: Promise<TData>;
 };
 
-const ssrDataElement = document.querySelector(`script[type="__SSR_DATA__"]`);
+const ssrDataElement =
+  typeof document !== "undefined"
+    ? document.querySelector(`script[type="__SSR_DATA__"]`)
+    : null;
 const ssrCache = ssrDataElement
   ? JSON.parse(decodeURI(ssrDataElement.innerHTML))
   : [];
@@ -17,7 +20,9 @@ const ssrCache = ssrDataElement
 const loadersCache = new Map<string, LoaderCacheValue<unknown>>(
   ssrCache.map(({ id, ...rest }) => [id, rest])
 );
-(window as any).loadersCache = loadersCache;
+if (typeof window !== "undefined") {
+  (window as any).loadersCache = loadersCache;
+}
 
 const loadData = <TData, TParams>(
   cacheId: string,
