@@ -25,6 +25,7 @@ const NavMenu = ({ title, items }: NavMenuProps) => {
       <div className="flex mb-4 lg:block">
         <h1 className="flex-grow block text-2xl font-semibold">{title}</h1>
         <button
+          aria-label="nav menu"
           className="block py-1 text-gray-700 hover:text-gray-900 lg:hidden"
           onClick={handleMenuClicked}
         >

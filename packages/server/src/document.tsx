@@ -74,8 +74,8 @@ export const Body: FC<PublicPathProps> = ({
         stats.assetsByChunkName[chunk] ? (
           <Fragment key={chunk}>
             {stats.assetsByChunkName[chunk].map((asset) =>
-              !asset.endsWith(".hot-update.js") && asset.endsWith(".js") ? (
-                <script key={asset} defer src={`${publicPath}${asset}`} />
+              !asset.includes("hot-update") && asset.endsWith(".js") ? (
+                <script key={asset} async defer src={`${publicPath}${asset}`} />
               ) : null
             )}
           </Fragment>
@@ -85,8 +85,8 @@ export const Body: FC<PublicPathProps> = ({
         stats.assetsByChunkName[chunk] ? (
           <Fragment key={chunk}>
             {stats.assetsByChunkName[chunk].map((asset) =>
-              !asset.endsWith(".hot-update.js") && asset.endsWith(".js") ? (
-                <script key={asset} src={`${publicPath}${asset}`} />
+              !asset.includes("hot-update") && asset.endsWith(".js") ? (
+                <script key={asset} defer src={`${publicPath}${asset}`} />
               ) : null
             )}
           </Fragment>
