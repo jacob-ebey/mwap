@@ -1,6 +1,6 @@
 {
   "name": "@mwap/example-tailwindcss",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "mwap start"
   },
   "dependencies": {
-    "mwap": "^0.0.1",
+    "mwap": "*",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-helmet-async": "1.0.9"

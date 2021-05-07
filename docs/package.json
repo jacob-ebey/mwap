@@ -1,6 +1,6 @@
 {
   "name": "@mwap/docs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -9,9 +9,9 @@
     "start": "mwap start"
   },
   "dependencies": {
-    "@mwap/app": "^0.0.1",
-    "@mwap/async": "^0.0.1",
-    "mwap": "^0.0.1",
+    "@mwap/app": "*",
+    "@mwap/async": "*",
+    "mwap": "*",
     "classnames": "2.3.1",
     "gray-matter": "4.0.2",
     "js-yaml": "4.0.0",

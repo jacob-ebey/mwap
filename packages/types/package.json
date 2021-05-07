@@ -1,6 +1,6 @@
 {
   "name": "@mwap/types",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "source": "src/types.ts",
   "types": "dist/types.d.ts",
