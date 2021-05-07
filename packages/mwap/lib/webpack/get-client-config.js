@@ -35,7 +35,7 @@ async function getClientConfig(args) {
 
   config.output = {
     path: path.resolve(args.cwd, args.dist, "client"),
-    publicPath: "/.mwap/",
+    publicPath: args.publicPath,
   };
 
   config.module.rules.push({

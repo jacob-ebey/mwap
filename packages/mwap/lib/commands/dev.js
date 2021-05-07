@@ -30,8 +30,6 @@ async function dev(args) {
     getServerConfig(args),
   ]);
 
-  serverConfig.output.publicPath = "/.mwap/server-build";
-
   const clientCompiler = webpack(clientConfig);
   const serverCompiler = webpack(serverConfig);
 

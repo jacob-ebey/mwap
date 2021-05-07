@@ -38,7 +38,7 @@ type PublicPathProps = {
 };
 
 export const Body: FC<PublicPathProps> = ({
-  publicPath = "/.mwap/",
+  publicPath = process.env.PUBLIC_PATH,
   children,
 }) => {
   const { appHtml, chunks, helmet, loaderCache, stats } = useContext(
@@ -103,7 +103,7 @@ export const Html: FC = ({ children }) => {
 };
 
 export const Head: FC<PublicPathProps> = ({
-  publicPath = "/.mwap/",
+  publicPath = process.env.PUBLIC_PATH,
   children,
 }) => {
   const { chunks, stats, helmet } = useContext(documentContext);

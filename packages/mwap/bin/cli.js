@@ -13,6 +13,7 @@ const prog = sade(pkg.name).version(pkg.version);
 prog
   .command("build")
   .describe("Build your project for production.")
+  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
   .option("--entry", "The package to use as an entry point", "@mwap/express")
   .option(
     "--cwd",
@@ -42,6 +43,7 @@ prog
 prog
   .command("dev")
   .describe("Run your project in dev mode.")
+  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
   .option(
     "--cwd",
     "The current working directory to run your app from",
@@ -70,6 +72,7 @@ prog
 
 prog
   .command("export")
+  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
   .describe("Static export your app.")
   .option(
     "--cwd",
@@ -92,6 +95,7 @@ prog
 prog
   .command("start")
   .describe("Run your build.")
+  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
   .option(
     "--cwd",
     "The current working directory to run your app from",

@@ -10,7 +10,7 @@ const resolveTsconfig = require("../utils/resolve-tsconfig");
 /**
  * @returns {Promise<import("webpack").Configuration>}
  */
-async function getBaseConfig({ cwd, mode }) {
+async function getBaseConfig({ cwd, mode, publicPath }) {
   const isProd = mode !== "development";
 
   const [
@@ -85,6 +85,7 @@ async function getBaseConfig({ cwd, mode }) {
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify(isProd ? "production" : "development"),
+          PUBLIC_PATH: JSON.stringify(publicPath || ""),
         },
       }),
     ],
