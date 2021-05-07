@@ -1,6 +1,6 @@
 {
   "name": "mwap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
@@ -29,7 +29,7 @@
     "@mwap/client": "^0.0.1",
     "@mwap/express": "^0.0.1",
     "@mwap/loaders": "^0.0.1",
-    "@mwap/server": "^0.0.1",
+    "@mwap/server": "^0.0.2",
     "@mwap/types": "^0.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "autoprefixer": "10.2.5",
