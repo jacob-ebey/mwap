@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "mwap build --publicPath \"/mwap/.mwap/\" && mwap export --publicPath \"/mwap/.mwap/\"",
+    "build": "mwap build && mwap export",
     "dev": "mwap dev",
     "start": "mwap start"
   },
