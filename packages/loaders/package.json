@@ -1,6 +1,6 @@
 {
   "name": "@mwap/loaders",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "source": "src/loaders.ts",
   "types": "dist/loaders.d.ts",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/react": "17.0.3",
-    "react": "17.0.2",
-    "microbundle": "0.13.0"
+    "microbundle": "0.13.0",
+    "react": "17.0.2"
   }
 }
