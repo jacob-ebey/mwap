@@ -4,9 +4,8 @@ The 💰web app platform.
 ## Running it
 
 ```
-> npm i -g @microsoft/rush
-> rush update
-> rush build
+> yarn
+> yarn build:mwap
 
 > cd examples/minimal
 > yarn dev
