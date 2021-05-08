@@ -31,7 +31,7 @@ const loadData = <TData, TParams>(
 ): Promise<TData> => {
   // TODO: Make loaders api path configurable
   const loaderPromsie = fetch(
-    `/.mwap/loader/${id}/${btoa(stringify(params))}.json`
+    `/dist/loader/${id}/${btoa(stringify(params))}.json`
   )
     .then((res) => {
       if (!res.ok) {

@@ -33,7 +33,7 @@ export const createApp = (express: any, args: StartArgs) => {
 
   router.use(urlencoded({ extended: false }));
 
-  router.use("/.mwap/loader/:loader/:params", async (req, res) => {
+  router.use("/dist/loader/:loader/:params", async (req, res) => {
     const loaderContext = createLoaderContext();
     const loader = req.params.loader.toString();
     const paramsJson = atob(
@@ -48,7 +48,7 @@ export const createApp = (express: any, args: StartArgs) => {
   });
 
   const clientPath = path.resolve(args.cwd, args.dist, "client");
-  router.use("/.mwap", express.static(clientPath, { fallthrough: false }));
+  router.use("/dist", express.static(clientPath, { fallthrough: false }));
 
   const publicPath = path.resolve(args.cwd, "public");
   router.use("/", express.static(publicPath));
@@ -88,7 +88,7 @@ export const createApp = (express: any, args: StartArgs) => {
         const filename = path.resolve(
           args.cwd,
           (args as any).static,
-          ".mwap/loader",
+          "dist/loader",
           loader,
           btoa(stringify(params)) + ".json"
         );

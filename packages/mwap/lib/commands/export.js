@@ -26,7 +26,7 @@ async function staticExport(args) {
 
   await fsExtra.copy(
     path.resolve(args.cwd, args.dist, "client"),
-    path.resolve(args.cwd, args.static, ".mwap")
+    path.resolve(args.cwd, args.static, args.dist)
   );
   await fsExtra
     .pathExists(path.resolve(args.cwd, "public"))

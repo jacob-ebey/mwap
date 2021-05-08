@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Helmet } from "react-helmet-async";
 
-const publicPath = process.env.PUBLIC_PATH.replace(".mwap/", "") || "";
+const publicPath = process.env.PUBLIC_PATH.replace("dist/", "") || "";
 
 const Meta = () => (
   <Helmet>

@@ -13,7 +13,7 @@ const prog = sade(pkg.name).version(pkg.version);
 prog
   .command("build")
   .describe("Build your project for production.")
-  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
+  .option("--publicPath", "The public path to prefix assets with", "/dist/")
   .option("--entry", "The package to use as an entry point", "@mwap/express")
   .option(
     "--cwd",
@@ -23,7 +23,7 @@ prog
   .option(
     "--dist",
     "The distribution directory that files will be built into",
-    ".mwap"
+    "dist"
   )
   .option("--mode", "Either 'production' or 'development'", "production")
   .option(
@@ -43,7 +43,7 @@ prog
 prog
   .command("dev")
   .describe("Run your project in dev mode.")
-  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
+  .option("--publicPath", "The public path to prefix assets with", "/dist/")
   .option(
     "--cwd",
     "The current working directory to run your app from",
@@ -52,7 +52,7 @@ prog
   .option(
     "--dist",
     "The distribution directory that files will be built into",
-    ".mwap"
+    "dist"
   )
   .option("--mode", "Either 'production' or 'development'", "development")
   .option("--port", "The port to start the server on", process.env.PORT || 5000)
@@ -72,7 +72,7 @@ prog
 
 prog
   .command("export")
-  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
+  .option("--publicPath", "The public path to prefix assets with", "/dist/")
   .describe("Static export your app.")
   .option(
     "--cwd",
@@ -82,7 +82,7 @@ prog
   .option(
     "--dist",
     "The distribution directory your app was previously built into",
-    ".mwap"
+    "dist"
   )
   .option(
     "--static",
@@ -95,7 +95,7 @@ prog
 prog
   .command("start")
   .describe("Run your build.")
-  .option("--publicPath", "The public path to prefix assets with", "/.mwap/")
+  .option("--publicPath", "The public path to prefix assets with", "/dist/")
   .option(
     "--cwd",
     "The current working directory to run your app from",
@@ -104,7 +104,7 @@ prog
   .option(
     "--dist",
     "The distribution directory that files will be built into",
-    ".mwap"
+    "dist"
   )
   .option("--mode", "Either 'production' or 'development'", "production")
   .option("--port", "The port to start the server on", process.env.PORT || 5000)
