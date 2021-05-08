@@ -24,6 +24,10 @@
     "label": "Custom Document"
   },
   {
+    "to": "/docs/cli",
+    "label": "CLI"
+  },
+  {
     "to": "/docs/configuration",
     "label": "MWAP Configuration"
   }

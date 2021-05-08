@@ -1,0 +1,10 @@
+Usage
+  $ mwap start [options]
+
+Options
+  --publicPath    The public path to prefix assets with  (default /dist/)
+  --cwd           The current working directory to run your app from  (default .)
+  --dist          The distribution directory that files will be built into  (default dist)
+  --mode          Either 'production' or 'development'  (default production)
+  --port          The port to start the server on  (default 5000)
+  -h, --help      Displays this message

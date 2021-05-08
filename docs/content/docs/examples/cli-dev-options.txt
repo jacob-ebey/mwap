@@ -1,0 +1,13 @@
+Usage
+  $ mwap dev [options]
+
+Options
+  --publicPath    The public path to prefix assets with  (default /dist/)
+  --cwd           The current working directory to run your app from  (default .)
+  --dist          The distribution directory that files will be built into  (default dist)
+  --mode          Either 'production' or 'development'  (default development)
+  --port          The port to start the server on  (default 5000)
+  --analyze       Analyze the client bundle with webpack-bundle-analyzer? This will open a browser window  (default false)
+  --inspect       Inspect the client bundle for potential performance improvments?  (default false)  
+  --verbose       Enable more verbose logging?  (default false)
+  --progress      Show progress bars?  (default true)

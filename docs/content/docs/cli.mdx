@@ -1,0 +1,52 @@
+---
+title: CLI
+imports:
+  data: ./cli.json
+  consoleOutput: ./examples/console-output.txt
+  buildOptions: ./examples/cli-build-options.txt
+  startOptions: ./examples/cli-start-options.txt
+  devOptions: ./examples/cli-dev-options.txt
+  exportOptions: ./examples/cli-export-options.txt
+---
+
+# MWAP CLI
+
+The MWAP CLI allows you to start, build, and export your applications.
+
+To get a list of the available CLI commands, run the following command inside your project directory:
+
+<Code language="git" code="npx mwap -h" />
+
+You should get a list of commands looking something like:
+
+<Code language="txt" code={consoleOutput} />
+
+## build
+
+`mwap build` creates an production build of your application.
+
+<Code language="txt" code={buildOptions} />
+
+## start
+
+`mwap start` runs your bundled app in production mode.
+
+<Code language="txt" code={startOptions} />
+
+## dev
+
+`mwap dev`starts your app in development mode with HMR and other awesome things.
+
+<Code language="txt" code={devOptions} />
+
+## export
+
+`mwap export` exports your application as a static site.
+
+<Code language="txt" code={exportOptions} />
+
+## Related
+
+For more information on what to do next, we recommend the following sections:
+
+<ComponentsRenderer components={data.components} />

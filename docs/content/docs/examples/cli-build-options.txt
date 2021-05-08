@@ -1,0 +1,14 @@
+Usage
+  $ mwap build [options]
+
+Options
+  --publicPath    The public path to prefix assets with  (default /dist/)
+  --entry         The package to use as an entry point  (default @mwap/express)
+  --cwd           The current working directory to build your app from  (default .)
+  --dist          The distribution directory that files will be built into  (default dist)
+  --mode          Either 'production' or 'development'  (default production)
+  --analyze       Analyze the client bundle with webpack-bundle-analyzer? This will open a browser window  (default false)
+  --inspect       Inspect the client bundle for potential performance improvments?  (default false)
+  --verbose       Enable more verbose logging?  (default false)
+  --progress      Show progress bars?  (default true)
+  -h, --help      Displays this message

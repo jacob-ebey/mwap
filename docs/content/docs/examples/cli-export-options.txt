@@ -1,0 +1,10 @@
+Usage
+  $ mwap export [options]
+
+Options
+  --publicPath    The public path to prefix assets with  (default /dist/)
+  --cwd           The current working directory to export your app from  (default .)
+  --dist          The distribution directory your app was previously built into  (default dist)      
+  --static        The directory that static files will be exported into  (default static)
+  --mode          Either 'production' or 'development'  (default production)
+  -h, --help      Displays this message
