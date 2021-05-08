@@ -1,0 +1,5 @@
+# Build output
+.mwap
+build
+dist
+static

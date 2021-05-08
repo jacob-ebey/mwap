@@ -8,9 +8,12 @@
   "scripts": {
     "build": "wsrun --stages build",
     "build:docs": "wsrun --stages build -p @mwap/docs -r",
-    "build:mwap": "wsrun --stages build -p mwap -r"
+    "build:mwap": "wsrun --stages build -p mwap -r",
+    "format": "prettier --write .",
+    "lint": "prettier --check ."
   },
   "devDependencies": {
+    "prettier": "2.2.1",
     "wsrun": "5.2.4"
   }
 }

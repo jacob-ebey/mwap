@@ -15,7 +15,7 @@ export type LoaderConfigFunc<
 > = (context: LoaderConfigContext<TData>) => TConfig;
 
 export type LoaderContext<TParams> = {
-  params: TParams
+  params: TParams;
 };
 
 export type Loader<TData = any, TParams = any> = (

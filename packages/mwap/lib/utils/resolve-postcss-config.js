@@ -8,7 +8,7 @@ async function resolvePostCssConfig(cwd) {
     return filepath;
   }
 
-  return path.resolve(__dirname, "../config/postcss.config.js")
+  return path.resolve(__dirname, "../config/postcss.config.js");
 }
 
 module.exports = resolvePostCssConfig;
