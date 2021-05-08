@@ -57,8 +57,6 @@ async function build({ _, ...args }) {
       }
 
       console.error("NO BUILD ERROR");
-
-      process.exit(0);
     })
     .catch((stats) => {
       // TODO: Investigate why I put this here and if it should actually be handled.
