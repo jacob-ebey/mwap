@@ -106,48 +106,68 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         {
           enforce: "pre",
           test: /\.ts$/,
+          exclude: [/node_modules/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
-          loader: require.resolve("esbuild-loader"),
-          options: {
-            loader: "ts",
-            target: "es2015",
-            tsconfigRaw,
-          },
+          use: [
+            {
+              loader: require.resolve("esbuild-loader"),
+              options: {
+                loader: "ts",
+                target: "es2015",
+                tsconfigRaw,
+              },
+            },
+          ],
         },
         {
           enforce: "pre",
           test: /\.tsx$/,
+          exclude: [/node_modules/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
-          loader: require.resolve("esbuild-loader"),
-          options: {
-            loader: "tsx",
-            target: "es2015",
-            tsconfigRaw,
-          },
+          use: [
+            {
+              loader: require.resolve("esbuild-loader"),
+              options: {
+                loader: "tsx",
+                target: "es2015",
+                tsconfigRaw,
+              },
+            },
+          ],
         },
         {
           enforce: "pre",
           test: /\.m?js?$/,
+          exclude: [/node_modules\/(!?mwap|@mwap)/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
-          loader: require.resolve("esbuild-loader"),
-          options: {
-            loader: "js",
-            target: "es2015",
-          },
+          use: [
+            {
+              loader: require.resolve("esbuild-loader"),
+              options: {
+                loader: "js",
+                target: "es2015",
+              },
+            },
+          ],
         },
         {
           enforce: "pre",
           test: /\.jsx?$/,
+          exclude: [/node_modules\/(!?mwap|@mwap)/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
-          loader: require.resolve("esbuild-loader"),
-          options: {
-            loader: "jsx",
-            target: "es2015",
-          },
+          use: [
+            {
+              loader: require.resolve("esbuild-loader"),
+              options: {
+                loader: "jsx",
+                target: "es2015",
+              },
+            },
+          ],
         },
       ],
     },

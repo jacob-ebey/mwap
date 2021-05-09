@@ -8,6 +8,7 @@ const WebpackBar = require("webpackbar");
 const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getSassConfiguration = require("../utils/get-sass-options");
+const getJsTsRules = require("../utils/get-jsts-rules");
 const getWebpackCacheConfigFiles = require("../utils/get-webpack-cache-config-files");
 const resolveEntry = require("../utils/resolve-entry");
 const resolvePostCssConfig = require("../utils/resolve-postcss-config");
@@ -112,6 +113,9 @@ async function getClientConfig(args) {
   if (isProd) {
     config.output.filename = "[name].[contenthash].js";
     config.output.chunkFilename = "[id].[contenthash].js";
+  } else {
+    config.output.filename = "[name].js";
+    config.output.chunkFilename = "[id].js";
   }
 
   if (args.progress) {
@@ -134,27 +138,28 @@ async function getClientConfig(args) {
   );
 
   if (!isProd) {
-    const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-
+    // TODO: Figure out a better HMR solution
     config.entry = ["webpack-hot-middleware/client", ...config.entry];
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
-    config.plugins.push(
-      new ReactRefreshWebpackPlugin({
-        overlay: false,
-      })
-    );
-    config.module.rules.push({
-      test: /\.[jt]sx?$/,
-      exclude: [/node_modules/],
-      use: [
-        {
-          loader: require.resolve("babel-loader"),
-          options: {
-            plugins: [require.resolve("react-refresh/babel")],
-          },
-        },
-      ],
-    });
+
+    // const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+    // config.plugins.push(
+    //   new ReactRefreshWebpackPlugin({
+    //     overlay: false,
+    //   })
+    // );
+    // config.module.rules.unshift({
+    //   test: /\.[jt]sx?$/,
+    // exclude: [/node_modules\/(!?mwap|@mwap)/],
+    //   use: [
+    //     {
+    //       loader: require.resolve("babel-loader"),
+    //       options: {
+    //         plugins: [require.resolve("react-refresh/babel")],
+    //       },
+    //     },
+    //   ],
+    // });
   }
 
   if (args.analyze) {
@@ -173,16 +178,14 @@ async function getClientConfig(args) {
     );
   }
 
-  if (isProd) {
-    const configFiles = await getWebpackCacheConfigFiles(args.cwd);
-    config.cache = {
-      name: "client",
-      type: "filesystem",
-      buildDependencies: {
-        config: ["mwap/lib/webpack/get-client-config.js", ...configFiles],
-      },
-    };
-  }
+  const configFiles = await getWebpackCacheConfigFiles(args.cwd);
+  config.cache = {
+    name: `client-${args.mode}`,
+    type: "filesystem",
+    buildDependencies: {
+      config: ["mwap/lib/webpack/get-client-config.js", ...configFiles],
+    },
+  };
 
   await applyUserConfig(Object.assign({}, args, { isServer: false }), config);
 

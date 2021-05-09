@@ -13,6 +13,7 @@ import components from "../components/mdx-components";
 export type ArticleParams = {
   article?: string;
 };
+
 export type ArticleData = {
   articleMdxSource: any;
   title: string;

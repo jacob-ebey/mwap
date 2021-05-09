@@ -1,0 +1,26 @@
+{
+  "name": "@mwap/example-custom-server",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "mwap build --entry ./server.ts",
+    "dev": "mwap dev --entry ./server.ts",
+    "start": "mwap start"
+  },
+  "dependencies": {
+    "@mwap/client": "*",
+    "@mwap/express": "*",
+    "express": "4.17.1",
+    "mwap": "*",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-helmet-async": "1.0.9",
+    "react-router-dom": "5.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.3",
+    "sass": "1.32.11",
+    "sass-loader": "11.0.1"
+  }
+}
