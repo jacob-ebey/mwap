@@ -1,0 +1,1 @@
+(self.webpackChunk_mwap_docs=self.webpackChunk_mwap_docs||[]).push([[126],{730:(k,t,e)=>{"use strict";e.r(t),e.d(t,{default:()=>c});var l=e(342),s=e(890);const c=({links:n})=>l.createElement("ul",{className:"list-none"},n.map(({label:m,to:a},r)=>l.createElement("li",{key:`${r}-${a}`},l.createElement(s.rU,{to:a},m))))}}]);
