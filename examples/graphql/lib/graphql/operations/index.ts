@@ -1,2 +1,1 @@
-export * from './TeamsByIdQuery'
-export * from './TeamsQuery'
+export * from "./CountriesQuery";
