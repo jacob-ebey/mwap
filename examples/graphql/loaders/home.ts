@@ -5,7 +5,7 @@ export type HomePageData = {
   ttl: number;
 };
 
-const loader: Loader<HomePageData> = async () => {
+const loader: Loader<HomePageData> = () => {
   return {
     name: "World",
     ttl: 604800,
