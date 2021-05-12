@@ -106,7 +106,6 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         {
           enforce: "pre",
           test: /\.ts$/,
-          exclude: [/node_modules/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
           use: [
@@ -123,7 +122,6 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         {
           enforce: "pre",
           test: /\.tsx$/,
-          exclude: [/node_modules/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
           use: [
@@ -140,7 +138,6 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         {
           enforce: "pre",
           test: /\.m?js?$/,
-          exclude: [/node_modules\/(!?mwap|@mwap)/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
           use: [
@@ -156,7 +153,6 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         {
           enforce: "pre",
           test: /\.jsx?$/,
-          exclude: [/node_modules\/(!?mwap|@mwap)/],
           resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           type: "javascript/auto",
           use: [
