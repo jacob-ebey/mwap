@@ -95,12 +95,14 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
           test: /\/async\/.*\.[tj]sx?$/,
           include: [path.resolve(cwd, "components")],
           exclude: [/node_modules/, mwapPages],
+          resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           loader: require.resolve("@mwap/async/webpack-loader"),
         },
         {
           test: /\.[tj]sx?$/,
           include: [path.resolve(cwd, "pages")],
           exclude: [/node_modules/, mwapPages],
+          resolve: { mainFields: ["module", "jsnext:main", "browser", "main"] },
           loader: require.resolve("@mwap/async/webpack-loader"),
         },
         {
