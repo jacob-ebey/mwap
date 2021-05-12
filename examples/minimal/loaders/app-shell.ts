@@ -5,6 +5,7 @@ export type AppShellProps = {
 };
 
 const loader: Loader<AppShellProps> = () => {
+  console.dir(process.env, { colors: true, depth: null });
   return {
     title: "AppShell",
   };
