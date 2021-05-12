@@ -4,6 +4,7 @@ const WebpackBar = require("webpackbar");
 
 const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
+const getJstsRules = require("../utils/get-jsts-rules");
 const getSassConfiguration = require("../utils/get-sass-options");
 const getWebpackCacheConfigFiles = require("../utils/get-webpack-cache-config-files");
 const getBaseConfig = require("./get-base-config");
@@ -47,6 +48,12 @@ async function getServerConfig(args) {
   };
 
   config.entry = [args.entry || "@mwap/express"];
+
+  getJstsRules(config).forEach((rule) => {
+    if (rule.resolve && rule.resolve.mainFields) {
+      rule.resolve.mainFields = ["module", "main"];
+    }
+  });
 
   config.module.rules.push({
     enforce: "pre",

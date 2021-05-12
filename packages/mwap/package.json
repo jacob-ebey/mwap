@@ -1,6 +1,6 @@
 {
   "name": "mwap",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "license": "MIT",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
