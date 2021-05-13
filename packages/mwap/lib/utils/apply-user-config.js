@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 const fileExists = require("./file-exists");
 
@@ -14,7 +15,7 @@ async function applyUserConfig(args, webpackConfig) {
 
   if (userConfig) {
     if (userConfig.webpack) {
-      await userConfig.webpack(webpackConfig, args);
+      await userConfig.webpack(webpackConfig, args, webpack);
     }
   }
 }
