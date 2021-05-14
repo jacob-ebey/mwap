@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const dotenv = require("dotenv");
 const sade = require("sade");
 
 const build = require("../lib/commands/build");
@@ -9,6 +10,8 @@ const start = require("../lib/commands/start");
 const pkg = require("../package.json");
 
 const prog = sade(pkg.name).version(pkg.version);
+
+dotenv.config();
 
 prog
   .command("build")

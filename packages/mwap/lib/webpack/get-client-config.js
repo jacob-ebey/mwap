@@ -8,7 +8,6 @@ const WebpackBar = require("webpackbar");
 const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getSassConfiguration = require("../utils/get-sass-options");
-const getJsTsRules = require("../utils/get-jsts-rules");
 const getWebpackCacheConfigFiles = require("../utils/get-webpack-cache-config-files");
 const resolveEntry = require("../utils/resolve-entry");
 const resolvePostCssConfig = require("../utils/resolve-postcss-config");
@@ -109,6 +108,24 @@ async function getClientConfig(args) {
       },
     ],
   });
+
+  const mwapEnvVariables = Object.entries(process.env).reduce(
+    (acc, [key, val]) => {
+      if (key.startsWith("MWAP_")) {
+        acc[key] = JSON.stringify(val);
+      }
+      return acc;
+    },
+    {}
+  );
+
+  if (Object.keys(mwapEnvVariables).length > 0) {
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        "process.env": mwapEnvVariables,
+      })
+    );
+  }
 
   if (isProd) {
     config.output.filename = "[name].[contenthash].js";
