@@ -1,12 +1,10 @@
 const path = require("path");
-const webpack = require("webpack");
 
 const { ESBuildMinifyPlugin } = require("esbuild-loader");
 
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const resolveEntry = require("../utils/resolve-entry");
 const resolveTsconfig = require("../utils/resolve-tsconfig");
-const getEnvironmentVariables = require("../utils/get-environment-variables");
 
 /**
  * @returns {Promise<import("webpack").Configuration>}
@@ -82,15 +80,7 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         },
       },
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(isProd ? "production" : "development"),
-          PUBLIC_PATH: JSON.stringify(publicPath || ""),
-          ...getEnvironmentVariables(),
-        },
-      }),
-    ],
+    plugins: [],
     module: {
       rules: [
         {

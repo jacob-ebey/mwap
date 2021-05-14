@@ -15,6 +15,7 @@ const resolvePostCssConfig = require("../utils/resolve-postcss-config");
 const tryResolveOptionalLoader = require("../utils/try-resolve-optional-loader");
 
 const getBaseConfig = require("./get-base-config");
+const getClientEnvironment = require("../utils/get-environment-variables");
 
 /**
  * @param {import("@mwap/types").BuildArgs}
@@ -127,6 +128,17 @@ async function getClientConfig(args) {
       })
     );
   }
+
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      "process.env": {
+        ...getClientEnvironment(
+          args.publicPath,
+          isProd ? "production" : "development"
+        ),
+      },
+    })
+  );
 
   config.plugins.push(
     new StatsWriterPlugin({
