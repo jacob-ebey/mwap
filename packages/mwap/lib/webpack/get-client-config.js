@@ -122,7 +122,11 @@ async function getClientConfig(args) {
   if (Object.keys(mwapEnvVariables).length > 0) {
     config.plugins.push(
       new webpack.DefinePlugin({
-        "process.env": mwapEnvVariables,
+        "process.env": {
+          NODE_ENV: JSON.stringify(isProd ? "production" : "development"),
+          PUBLIC_PATH: JSON.stringify(args.publicPath || ""),
+          ...mwapEnvVariables,
+        },
       })
     );
   }

@@ -2,6 +2,7 @@ const path = require("path");
 
 const WebpackBar = require("webpackbar");
 
+const webpack = require("webpack");
 const applyUserConfig = require("../utils/apply-user-config");
 const findAllNodeModules = require("../utils/find-all-node-modules");
 const getJstsRules = require("../utils/get-jsts-rules");
@@ -90,6 +91,26 @@ async function getServerConfig(args) {
     exclude: [/\.module\.(p?css|s[ac]ss)$/],
     loader: "null-loader",
   });
+
+  const serverEnvVariables = Object.entries(process.env).reduce(
+    (acc, [key, val]) => {
+      if (!key.startsWith("MWAP_")) {
+        acc[key] = JSON.stringify(val);
+      }
+      return acc;
+    },
+    {}
+  );
+
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(isProd ? "production" : "development"),
+        PUBLIC_PATH: JSON.stringify(args.publicPath || ""),
+        ...serverEnvVariables,
+      },
+    })
+  );
 
   if (args.progress) {
     config.plugins.push(
