@@ -81,14 +81,7 @@ async function getBaseConfig({ cwd, mode, publicPath }) {
         },
       },
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(isProd ? "production" : "development"),
-          PUBLIC_PATH: JSON.stringify(publicPath || ""),
-        },
-      }),
-    ],
+    plugins: [],
     module: {
       rules: [
         {
